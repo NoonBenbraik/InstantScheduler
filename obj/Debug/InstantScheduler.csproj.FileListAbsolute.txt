@@ -1,0 +1,16 @@
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstantScheduler.exe.config
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstantScheduler.exe
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstantScheduler.pdb
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojResolveAssemblyReference.cache
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\MainWindow.g.cs
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\App.g.cs
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler_MarkupCompile.cache
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler_MarkupCompile.lref
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\MainWindow.baml
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.g.resources
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.Properties.Resources.resources
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.GenerateResource.Cache
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.exe
+c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.pdb
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\HomeWindow.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\HomeWindow.baml
