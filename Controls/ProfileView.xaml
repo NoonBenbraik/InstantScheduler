@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="InstantScheduler.Controls.ProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InstantScheduler.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="700" MaxWidth="700"
+             Background="#EEE">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="2"/> <!-- progress bar -->
+            <RowDefinition Height="*"/> <!-- posts -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="5" CornerRadius="10" Background="White" BorderThickness="0.5" BorderBrush="#999"/>
+
+        <Border Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="1" Margin="10, 0" Background="Transparent" BorderThickness="0,0,0,0.5" BorderBrush="#999"/>
+
+        <Ellipse Margin="15" Stroke="#CCC" StrokeThickness="0.5">
+            <Ellipse.Fill>
+                <ImageBrush Stretch="UniformToFill" ImageSource="../src/img/profilefiller.jpg"/>
+            </Ellipse.Fill>
+        </Ellipse>
+
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region UserInfo -->
+            <Label Content="Fayrouz" VerticalAlignment="Bottom" FontFamily="calibri" FontWeight="Bold" Margin="5, 0"/>
+            <Label Content="@fayrouzOrigin" Grid.Column="1" VerticalAlignment="Bottom" FontFamily="calibri" FontWeight="Regular" Foreground="#999" Margin="5, 0"/>
+
+            <Button Content="follow" Visibility="Visible" Grid.Row="0" Width="100" Grid.Column="2" Height="25" VerticalAlignment="Bottom" Margin="5,0" Background="Transparent" BorderBrush="#999" BorderThickness="0.5" />
+            <Button Content="following" Visibility="Hidden" Grid.Row="0" Grid.Column="2" Width="100" Height="25" VerticalAlignment="Bottom" Margin="5,0" Background="Transparent" BorderBrush="#999" BorderThickness="0.5" />
+
+            <Label Content="Posts" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" FontFamily="calibri" FontWeight="Regular" Foreground="#999" Margin="5, 0"/>
+            <Label Content="Following" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" FontFamily="calibri" FontWeight="Regular" Foreground="#999" Margin="5, 0"/>
+            <Label Content="Followers" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" FontFamily="calibri" FontWeight="Regular" Foreground="#999" Margin="5, 0"/>
+
+            <Label Content="12" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" FontFamily="calibri" FontWeight="Bold" Foreground="#999" Margin="5, 0"/>
+            <Label Content="32" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" FontFamily="calibri" FontWeight="Bold" Foreground="#999" Margin="5, 0"/>
+            <Label Content="1" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="calibri" FontWeight="Bold" Foreground="#999" Margin="5, 0"/>
+            <!--#endregion-->
+            
+            
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>
