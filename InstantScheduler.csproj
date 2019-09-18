@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\SearchesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +90,9 @@
     </Compile>
     <Compile Include="Controls\SchedulesView.xaml.cs">
       <DependentUpon>SchedulesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchesView.xaml.cs">
+      <DependentUpon>SearchesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>

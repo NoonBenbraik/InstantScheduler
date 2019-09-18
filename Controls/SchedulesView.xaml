@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InstantScheduler.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="700"
+             Height="Auto" d:DesignWidth="700"
              Background="#EEE">
     <Grid>
         <Border Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="5" Padding="5" CornerRadius="10" Background="White" BorderThickness="0.5" BorderBrush="#999">
@@ -32,11 +32,260 @@
 
                 <Border Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="1" Padding="5" Margin="10, 0, 10, 5" CornerRadius="0, 10, 10, 10" Background="#EEE">
                 </Border>
-                <Border Grid.Row="2"  Grid.ColumnSpan="2" BorderThickness="0, 0, 0, 0.5" BorderBrush="#AAA" Margin="5, 0"/>
+                <Border Grid.Row="2"  Grid.ColumnSpan="2" BorderThickness="0, 0, 0, 0.5" BorderBrush="#AAA" Margin="5, 0" Padding="10">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="3" Content="My Schedules" FontFamily="calibri" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+                        <Label Grid.Row="0" Grid.ColumnSpan="4" Content="Choose life time period for this schedule" FontFamily="calibri" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+                        <Label Grid.Row="1" Grid.ColumnSpan="1" Content="starting date" FontFamily="calibri" FontSize="13" FontWeight="Regular"  HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="10, 0"/>
+                        <DatePicker Grid.Row="1" Grid.Column="1"/>
+
+                        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Content="ending date" FontFamily="calibri" FontSize="13" FontWeight="Regular" VerticalAlignment="Center" HorizontalContentAlignment="Right" Margin="10, 0"/>
+                        <DatePicker Grid.Row="1" Grid.Column="3"/>
+
+                        <Label Grid.Row="2" Grid.ColumnSpan="4" Content="Choose active time of day for this schedule" FontFamily="calibri" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+
+                        <Label Grid.Row="3" Grid.ColumnSpan="1" Content="starting time"  HorizontalContentAlignment="Right" FontFamily="calibri" FontSize="13" FontWeight="Regular" VerticalAlignment="Center" Margin="10, 0"/>
+                        <UniformGrid Grid.Row="3" Grid.Column="1" Columns="3">
+                            <ComboBox Background="White">
+                                <ComboBoxItem Content="1"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                                <ComboBoxItem Content="6"/>
+                                <ComboBoxItem Content="7"/>
+                                <ComboBoxItem Content="8"/>
+                                <ComboBoxItem Content="9"  IsSelected="True"/>
+                                <ComboBoxItem Content="10"/>
+                                <ComboBoxItem Content="11"/>
+                                <ComboBoxItem Content="12"/>
+                            </ComboBox>
+                            <ComboBox Background="White">
+                                <ComboBoxItem Content="1" IsSelected="True"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                                <ComboBoxItem Content="6"/>
+                                <ComboBoxItem Content="7"/>
+                                <ComboBoxItem Content="8"/>
+                                <ComboBoxItem Content="9"/>
+                                <ComboBoxItem Content="10"/>
+                                <ComboBoxItem Content="11"/>
+                                <ComboBoxItem Content="12"/>
+                                <ComboBoxItem Content="13"/>
+                                <ComboBoxItem Content="14"/>
+                                <ComboBoxItem Content="15"/>
+                                <ComboBoxItem Content="16"/>
+                                <ComboBoxItem Content="17"/>
+                                <ComboBoxItem Content="18"/>
+                                <ComboBoxItem Content="19"/>
+                                <ComboBoxItem Content="20"/>
+                                <ComboBoxItem Content="21"/>
+                            </ComboBox>
+                            <ComboBox Background="White">
+                                <ComboBoxItem Content="AM"  IsSelected="True"/>
+                                <ComboBoxItem Content="PM"/>
+                            </ComboBox>
+
+                        </UniformGrid>
+
+                        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Content="ending time"  HorizontalContentAlignment="Right" FontFamily="calibri" FontSize="13" FontWeight="Regular" VerticalAlignment="Center" Margin="10, 0"/>
+                        <UniformGrid Grid.Row="3" Grid.Column="3" Columns="3">
+                            <ComboBox Background="White">
+                                <ComboBoxItem Content="1"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5" IsSelected="True"/>
+                                <ComboBoxItem Content="6"/>
+                                <ComboBoxItem Content="7"/>
+                                <ComboBoxItem Content="8"/>
+                                <ComboBoxItem Content="9" />
+                                <ComboBoxItem Content="10"/>
+                                <ComboBoxItem Content="11"/>
+                                <ComboBoxItem Content="12"/>
+                            </ComboBox>
+                            <ComboBox Background="White">
+                                <ComboBoxItem Content="1" IsSelected="True"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                                <ComboBoxItem Content="6"/>
+                                <ComboBoxItem Content="7"/>
+                                <ComboBoxItem Content="8"/>
+                                <ComboBoxItem Content="9"/>
+                                <ComboBoxItem Content="10"/>
+                                <ComboBoxItem Content="11"/>
+                                <ComboBoxItem Content="12"/>
+                                <ComboBoxItem Content="13"/>
+                                <ComboBoxItem Content="14"/>
+                                <ComboBoxItem Content="15"/>
+                                <ComboBoxItem Content="16"/>
+                                <ComboBoxItem Content="17"/>
+                                <ComboBoxItem Content="18"/>
+                                <ComboBoxItem Content="19"/>
+                                <ComboBoxItem Content="20"/>
+                                <ComboBoxItem Content="21"/>
+                            </ComboBox>
+                            <ComboBox Background="White">
+                                <ComboBoxItem Content="AM" />
+                                <ComboBoxItem Content="PM" IsSelected="True"/>
+                            </ComboBox>
+
+                        </UniformGrid>
+
+                        <Label Grid.Row="4" Grid.ColumnSpan="4" Content="Active Days" FontFamily="calibri" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="4" Margin="10, 5">
+                            <CheckBox Content="Everyday" FontFamily="calibri" FontWeight="Bold" Margin="5, 0"/>
+                            <CheckBox Content="Sunday"  FontFamily="calibri" Margin="5, 0"/>
+                            <CheckBox Content="Monday"  FontFamily="calibri" Margin="5, 0"/>
+                            <CheckBox Content="Tuesday"  FontFamily="calibri" Margin="5, 0"/>
+                            <CheckBox Content="Wednesday"  FontFamily="calibri" Margin="5, 0"/>
+                            <CheckBox Content="Thursday"  FontFamily="calibri" Margin="5, 0"/>
+                            <CheckBox Content="Friday"  FontFamily="calibri" Margin="5, 0"/>
+                            <CheckBox Content="Saturday"  FontFamily="calibri" Margin="5, 0"/>
+                        </StackPanel>
+
+                        <Label Grid.Row="6" Grid.ColumnSpan="4" Content="Task Limit" FontFamily="calibri" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+
+                        <UniformGrid Grid.Row="7" Columns="3" Grid.ColumnSpan="2">
+                            <Label Content="Limit tasks to" HorizontalContentAlignment="Right" FontFamily="calibri" FontSize="13" FontWeight="Regular" VerticalAlignment="Center" Margin="10, 0"/>
+                            <TextBox Margin="5, 2"/>
+                            <Label Content="per day" FontFamily="calibri" FontSize="13" FontWeight="Regular" VerticalAlignment="Center" Margin="10, 0"/>
+                        </UniformGrid>
+
+                        <UniformGrid Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Columns="2">
+                            <Button Content="Reset" Margin="5, 2"/>
+                            <Button Content="Create" Margin="5, 2"/>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+
+                
+                
+                <Label Grid.Row="3" Content="My Schedules" FontFamily="calibri" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 5, 10, 0"/>
+
+                <StackPanel Grid.Row="4"  Grid.ColumnSpan="2">
+
+                    <Border Padding="10" Background="#6AC49C" CornerRadius="10" MinHeight="180" Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
 
 
+                            <Image Grid.RowSpan="7" Grid.Column="4" Height="75" Source="../src/img/icons/schedules.png"/>
+
+                            <Label Content="Example Schedule" FontFamily="calibri" FontSize="16" FontWeight="Bold" Foreground="Black" Grid.ColumnSpan="4" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" Content="Start Date" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="0" Content="2019-9-17" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="1" Content="End Date" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="1" Content="2019-9-17" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="2" Content="Start Time" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="2" Content="9:30 AM" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="3" Content="End Time" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="3" Content="10:00 PM" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="3" Grid.ColumnSpan="4" Content="Saturday, Sunday, Monday, Tuseday, Wednesday, Thursday, Friday" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Content="Running Tasks" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="5" VerticalAlignment="Top" Grid.Column="0" Content="266" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="4" Grid.Column="1" Content="Completed Tasks" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="5" VerticalAlignment="Top" Grid.Column="1" Content="266" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="4" Grid.Column="2" Content="Statues" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="5" VerticalAlignment="Top" Grid.Column="2" Content="Active" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                        </Grid>
+                    </Border>
+
+                    <Border Padding="10" Background="#ABABAB" CornerRadius="10" MinHeight="180" Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Image Grid.RowSpan="7" Grid.Column="4" Height="75" Source="../src/img/icons/schedules.png"/>
+
+                            <Label Content="Example Schedule" FontFamily="calibri" FontSize="16" FontWeight="Bold" Foreground="Black" Grid.ColumnSpan="4" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" Content="Start Date" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="0" Content="2019-9-17" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="1" Content="End Date" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="1" Content="2019-9-17" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="2" Content="Start Time" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="2" Content="9:30 AM" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="1" Grid.Column="3" Content="End Time" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="2" VerticalAlignment="Top" Grid.Column="3" Content="10:00 PM" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="3" Grid.ColumnSpan="4" Content="Saturday, Sunday, Monday, Tuseday, Wednesday, Thursday, Friday" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Content="Running Tasks" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="5" VerticalAlignment="Top" Grid.Column="0" Content="266" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="4" Grid.Column="1" Content="Completed Tasks" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="5" VerticalAlignment="Top" Grid.Column="1" Content="266" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Label Grid.Row="4" Grid.Column="2" Content="Statues" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#FFF" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                            <Label Grid.Row="5" VerticalAlignment="Top" Grid.Column="2" Content="Sleeping.." FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+                
             </Grid>
         </Border>
     </Grid>
