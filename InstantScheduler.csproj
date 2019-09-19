@@ -157,5 +157,8 @@
   <ItemGroup>
     <Resource Include="src\img\icons\SchedulesHeader.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\img\icons\SearchHeader.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
