@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\App.xaml
-3-633096881
+8541210455
 
-71807014876
+19199527362
 13738642453
-Controls\PostView.xaml;HomeWindow.xaml;MainWindow.xaml;
+Controls\FeedView.xaml;Controls\PostView.xaml;Controls\ProfileView.xaml;Controls\SchedulesView.xaml;Controls\SearchesView.xaml;Controls\TasksView.xaml;HomeWindow.xaml;MainWindow.xaml;
 
 False
 

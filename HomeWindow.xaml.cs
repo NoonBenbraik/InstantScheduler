@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InstantScheduler.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,57 @@ namespace InstantScheduler
         public HomeWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            pnlMainContent.Children.Clear();
+            pnlMainContent.Children.Add(new FeedView()); 
+        }
+
+        private void btnFeed_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMainContent.Children.Clear();
+            pnlMainContent.Children.Add(new FeedView());
+
+        }
+
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMainContent.Children.Clear();
+            pnlMainContent.Children.Add(new ProfileView());
+
+        }
+
+        private void btnSchedules_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMainContent.Children.Clear();
+            pnlMainContent.Children.Add(new SchedulesView());
+
+        }
+
+        private void btnSearches_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMainContent.Children.Clear();
+            pnlMainContent.Children.Add(new SearchesView());
+
+        }
+
+        private void btnTasks_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMainContent.Children.Clear();
+            pnlMainContent.Children.Add(new TasksView());
+
+        }
+
+        private void btnMessages_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); 
         }
     }
 }

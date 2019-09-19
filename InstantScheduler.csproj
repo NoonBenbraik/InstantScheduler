@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\FeedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PostView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -70,6 +74,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +89,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\FeedView.xaml.cs">
+      <DependentUpon>FeedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PostView.xaml.cs">
       <DependentUpon>PostView.xaml</DependentUpon>
@@ -94,6 +105,9 @@
     <Compile Include="Controls\SearchesView.xaml.cs">
       <DependentUpon>SearchesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TasksView.xaml.cs">
+      <DependentUpon>TasksView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
@@ -103,6 +117,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Meta\TimeModel.cs" />
+    <Compile Include="Meta\Types.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\ScheduleModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -159,6 +180,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\img\icons\SearchHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\img\icons\TasksHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\img\icons\FeedHeader.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

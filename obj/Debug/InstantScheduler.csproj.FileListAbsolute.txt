@@ -17,3 +17,13 @@ C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\PostView.g.cs
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\App.baml
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\PostView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\ProfileView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\SchedulesView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\SearchesView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\ProfileView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\SchedulesView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\SearchesView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\FeedView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\TasksView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\FeedView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\TasksView.baml

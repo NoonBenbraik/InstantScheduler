@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:InstantScheduler.Controls"
              mc:Ignorable="d" 
              d:DesignWidth="700" MinWidth="600" MaxWidth="700"
-             Height="Auto" Background="#EEE"
+             Height="Auto"
              >
     <Grid>
         <Border Background="White" CornerRadius="20" BorderBrush="#888" BorderThickness="0.5" Padding="10" Margin="10">

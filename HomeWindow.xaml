@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:InstantScheduler"
         mc:Ignorable="d"
         Title="HomeWindow" MinWidth="800" Width="300"
+        Loaded="Window_Loaded"
         Background="#FFF">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -50,25 +51,25 @@
         
         <!-- Sidebar -->
         <UniformGrid Background="#EEE" Grid.RowSpan="3" Rows="7">
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnFeed" Click="btnFeed_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/feed.png" Width="30"/>
             </Button>
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnProfile" Click="btnProfile_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/profile.png" Width="30"/>
             </Button>
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnSchedules" Click="btnSchedules_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/schedules.png" Width="30"/>
             </Button>
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnSearches" Click="btnSearches_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/search.png" Width="30"/>
             </Button>
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnTasks" Click="btnTasks_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/tasks.png" Width="30"/>
             </Button>
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnMessages" Click="btnMessages_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/message.png" Width="30"/>
             </Button>
-            <Button Background="Transparent" BorderBrush="Transparent">
+            <Button Name="btnLogout" Click="btnLogout_Click" Background="Transparent" BorderBrush="Transparent">
                 <Image Source="./src/img/icons/power.png" Width="30"/>
             </Button>
         </UniformGrid>
@@ -76,13 +77,9 @@
         <!-- Main Content -->
 
         <ScrollViewer Grid.Row="1" Grid.Column="1">
-            <Border Grid.Row="1" Grid.Column="1" MaxWidth="800" Padding="10" Background="#EEE" Margin="5" CornerRadius="10">
+            <StackPanel Name="pnlMainContent" Background="#EEE" Orientation="Vertical">
 
-                <StackPanel Name="pnlMainContent" Orientation="Vertical">
-                    
-                </StackPanel>
-                
-            </Border>
+            </StackPanel>
         </ScrollViewer>
         
         

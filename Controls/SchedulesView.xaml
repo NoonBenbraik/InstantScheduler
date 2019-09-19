@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InstantScheduler.Controls"
              mc:Ignorable="d" 
-             Height="Auto" d:DesignWidth="700"
-             Background="#EEE">
+             Height="Auto" MaxWidth="700" MinWidth="600" d:DesignWidth="690.244">
     <Grid>
         <Border Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="5" Padding="5" CornerRadius="10" Background="White" BorderThickness="0.5" BorderBrush="#999">
 

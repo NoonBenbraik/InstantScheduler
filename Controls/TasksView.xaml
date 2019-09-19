@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="InstantScheduler.Controls.TasksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InstantScheduler.Controls"
+             mc:Ignorable="d" 
+             Height="Auto" d:DesignWidth="650" MinWidth="600" MaxWidth="700">
+    <Grid>
+        <Border Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="5" Padding="5" CornerRadius="10" Background="White" BorderThickness="0.5" BorderBrush="#999">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Content="Tasks" FontFamily="calibri" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+                <Image Grid.Column="1" Margin="20" Source="../src/img/icons/TasksHeader.png"/>
+                <Border Grid.ColumnSpan="2" BorderThickness="0, 0, 0, 0.5" BorderBrush="#AAA" Margin="5, 0"/>
+
+                <Label Grid.Row="1" Content="Create new task" FontFamily="calibri" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 0"/>
+
+                <Border Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="1" Padding="5" Margin="10, 0, 10, 5" CornerRadius="0, 10, 10, 10" Background="#EEE">
+                </Border>
+                <Border Grid.Row="2"  Grid.ColumnSpan="2" BorderThickness="0, 0, 0, 0.5" BorderBrush="#AAA" Margin="5, 0" Padding="10">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" MinHeight="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Grid.Row="0" Grid.ColumnSpan="4" Content="Task Title" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <TextBox Grid.Row="1" Padding="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
+
+                        <Label Grid.Row="2" Grid.ColumnSpan="4" Content="Task Type" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <ComboBox Grid.Row="3" Padding="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
+
+                        <Label Grid.Row="4" Grid.ColumnSpan="4" Content="Schedule" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <ComboBox Grid.Row="5" Padding="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
+
+                        <Label Grid.Row="6" Grid.ColumnSpan="2" Content="Searches" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Content="look up saved searches" FontFamily="calibri" FontSize="12" FontWeight="Regular" Foreground="#888" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <TextBox Grid.Row="7" Padding="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="5"/>
+                        <ListBox Grid.Row="8" Padding="2" Grid.Column="2" Height="100" Grid.ColumnSpan="2" Margin="5"/>
+                        <ListBox Grid.Row="7" Padding="2" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="5"/>
+
+                        <Label Grid.Row="9" Grid.ColumnSpan="2" Content="Repeat" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <Label Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Content="how many times to execute this task" FontFamily="calibri" FontSize="12" FontWeight="Regular" Foreground="#888" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <TextBox Grid.Row="10" Padding="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"/>
+
+                        <UniformGrid Grid.Row="11" Margin="0, 10, 0, 0" Grid.Column="2" Grid.ColumnSpan="2" Columns="2">
+                            <Button Content="Reset" Margin="5, 2"/>
+                            <Button Content="Create" Margin="5, 2"/>
+                        </UniformGrid>
+
+                    </Grid>
+                </Border>
+
+
+
+                <Label Grid.Row="3" Content="Running Tasks" FontFamily="calibri" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 5, 10, 0"/>
+
+                <StackPanel Grid.Row="4"  Grid.ColumnSpan="2">
+
+                    <Border Padding="10" Background="#FFF" BorderBrush="#CE3D4F" BorderThickness="1" CornerRadius="10" MinHeight="100" Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Image Grid.RowSpan="2" Grid.Column="4" Height="75" Source="../src/img/icons/tasks.png"/>
+
+                            <Label Content="Task Example" FontFamily="calibri" FontSize="16" FontWeight="Bold" Foreground="Black" Grid.ColumnSpan="4" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+
+                            <Button Content="View" Grid.Row="1" Grid.Column="0" Margin="5" Background="Transparent" Foreground="Black" BorderBrush="#AAA"/>
+                            <Button Content="Stop" Grid.Row="1" Grid.Column="1" Margin="5" Background="Transparent" Foreground="Black" BorderBrush="#AAA"/>
+
+                            <ProgressBar Grid.Row="2" Foreground="#CE3D4F" Grid.ColumnSpan="5" Value="25"/>
+
+                        </Grid>
+                    </Border>
+
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>
