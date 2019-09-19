@@ -8,5 +8,8 @@
             <Border BorderBrush="Transparent" Background="Transparent"/>
         </ControlTemplate>
 
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="FontFamily" Value="calibri" />
+        </Style>
     </Application.Resources>
 </Application>
