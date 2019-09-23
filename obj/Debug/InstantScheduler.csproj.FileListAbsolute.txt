@@ -1,7 +1,6 @@
 c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstantScheduler.exe.config
 c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstantScheduler.exe
 c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstantScheduler.pdb
-c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojResolveAssemblyReference.cache
 c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\MainWindow.g.cs
 c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\App.g.cs
 c:\users\noon\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler_MarkupCompile.cache
@@ -27,3 +26,16 @@ C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\TasksView.g.cs
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\FeedView.baml
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\TasksView.baml
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\crypto.dll
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.dll
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstaSharp.dll
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\crypto.pdb
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\crypto.xml
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.xml
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojAssemblyReference.cache
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CoreCompileInputs.cache
+C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CopyComplete

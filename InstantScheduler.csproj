@@ -126,6 +126,8 @@
     <Compile Include="Controls\TasksView.xaml.cs">
       <DependentUpon>TasksView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\InstaContext.cs" />
+    <Compile Include="DAL\UserProcessor.cs" />
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
