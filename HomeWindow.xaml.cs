@@ -1,4 +1,5 @@
 ﻿using InstantScheduler.Controls;
+using InstaSharper.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace InstantScheduler
     /// </summary>
     public partial class HomeWindow : Window
     {
-        public HomeWindow()
+        public HomeWindow(IInstaApi API)
         {
             InitializeComponent();
         }

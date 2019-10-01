@@ -28,27 +28,27 @@
                 </Grid.ColumnDefinitions>
 
                 <!--#region Post Header -->
-                <Ellipse Grid.Column="0" Grid.RowSpan="2" Margin="0, 0, 0, 10">
+                <Ellipse Name="profileImage" Grid.Column="0" Grid.RowSpan="2" Margin="0, 0, 0, 10">
                     <Ellipse.Fill>
                         <ImageBrush Stretch="UniformToFill" ImageSource="../src/img/profilefiller.jpg"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <Label Content="Fayrouz" Grid.Row="0" Grid.Column="1" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <Label Content="2019-9-17" Foreground="#999" Grid.Row="0" Grid.Column="2" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <Label Content="@Fayrouz" Foreground="#999" Grid.Row="1" Grid.Column="1" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Label Name="lblDisplayName" Content="Fayrouz" Grid.Row="0" Grid.Column="1" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Label Name="lblCreatedAt" Content="2019-9-17" Foreground="#999" Grid.Row="0" Grid.Column="2" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <Label Name="lblUsername" Content="@Fayrouz" Foreground="#999" Grid.Row="1" Grid.Column="1" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
                 <Border BorderBrush="#AAA" BorderThickness="0, 0, 0, 0.5" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
                 <!--#endregion-->
 
                 <!--#region caption-->
-                <TextBlock Text="Starting and Ending dates: the schedule will be active between these dates, E.g. from 13, august, 2019 to 30, august, 2019." Grid.Row="2" Grid.ColumnSpan="3" Padding="5" Margin="10" FontFamily="calibri" FontSize="12"/>
+                <TextBlock Name="txtCaption" Text="Starting and Ending dates: the schedule will be active between these dates, E.g. from 13, august, 2019 to 30, august, 2019." Grid.Row="2" Grid.ColumnSpan="3" Padding="5" Margin="10" FontFamily="calibri" FontSize="12"/>
 
                 <!--#endregion-->
 
                 <!--#region Media -->
                 <ScrollViewer Background="#EEE" Grid.Row="3" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="pnlImages" Orientation="Horizontal">
                         <Image Stretch="Uniform" Height="500" Width="Auto" Source="../src/img/profilefiller.jpg"/>
                         <Image Stretch="Uniform" Height="500" Width="Auto" Source="../src/img/profilefiller.jpg"/>
                     </StackPanel>
@@ -59,7 +59,7 @@
                 <Button Grid.Row="4" Height="25" Padding="3" Background="Transparent" BorderBrush="Transparent">
                     <Image Stretch="Uniform" Source="../src/img/icons/like.png"/>
                 </Button>
-                <Label Content="29" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5, 0"/>
+                <Label Name="lblLikeCount" Content="29" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5, 0"/>
                 <!--#endregion-->
                 
                 <!--#region Comments-->

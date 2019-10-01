@@ -20,9 +20,20 @@ namespace InstantScheduler.Controls
     /// </summary>
     public partial class PostView : UserControl
     {
+        public PostView(InstaSharp.Models.Media post)
+        {
+            InitializeComponent();
+
+            lblDisplayName.Content = post.User.FullName;
+            lblUsername.Content = post.User.Username;
+            lblCreatedAt.Content = post.CreatedTime.ToString("YYYY-MM-DD");
+            txtCaption.Text = post.Caption.Text; 
+        }
+
         public PostView()
         {
             InitializeComponent();
         }
+
     }
 }

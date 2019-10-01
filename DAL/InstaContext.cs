@@ -10,7 +10,7 @@ namespace InstantScheduler.DAL
 {
     public class InstaContext : DbContext
     {
-        public InstaContext() : base()
+        public InstaContext() : base("name=DefaultConnection")
         {
 
         }
