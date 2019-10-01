@@ -1,5 +1,8 @@
 ﻿using InstantScheduler.Controls;
+using InstantScheduler.DAL;
+using InstantScheduler.Models;
 using InstaSharper.API;
+using InstaSharper.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +24,56 @@ namespace InstantScheduler
     /// </summary>
     public partial class HomeWindow : Window
     {
-        public HomeWindow(IInstaApi API)
+        private IInstaApi Api { get; set; }
+        private InstaCurrentUser CurrentUser { get; set; }
+        private UserModel UserModel; 
+
+        public HomeWindow(IInstaApi api)
         {
             InitializeComponent();
+            this.Api = api; 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var _user = await Api.GetCurrentUserAsync(); 
+            if (_user.Succeeded)
+            {
+                this.CurrentUser = _user.Value;
+
+                using (var context = new InstaContext())
+                {
+                    if(!context.Users.Any(u => u.PK == this.CurrentUser.Pk))
+                    {
+                        var user = new UserModel
+                        {
+                            PK = this.CurrentUser.Pk,
+                            LastLogin = DateTime.Now
+                        };
+
+                        context.Users.Add(user);
+                        context.SaveChanges(); 
+                    }
+
+                    this.UserModel = context.Users.First(u => this.CurrentUser.Pk == u.PK);
+                    this.UserModel.LastLogin = DateTime.Now;
+                    context.SaveChanges();
+                }
+
+                profileImage.Fill = new ImageBrush(new BitmapImage(new Uri(this.CurrentUser.ProfilePicture)));
+                lblUsername.Content = this.CurrentUser.UserName;
+                progressBar.Visibility = Visibility.Hidden; 
+            }
+            else
+            {
+                MessageBox.Show(_user.Info.Message); 
+                this.Close(); 
+            }
+
             pnlMainContent.Children.Clear();
             pnlMainContent.Children.Add(new FeedView()); 
         }
+
 
         private void btnFeed_Click(object sender, RoutedEventArgs e)
         {

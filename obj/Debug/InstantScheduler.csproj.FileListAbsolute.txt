@@ -36,6 +36,5 @@ C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.xml
 C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\Newtonsoft.Json.xml
-C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojAssemblyReference.cache
-C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CoreCompileInputs.cache
-C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CopyComplete
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstaSharper.dll
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojResolveAssemblyReference.cache

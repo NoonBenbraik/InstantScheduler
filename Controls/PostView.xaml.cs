@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InstaSharper.Classes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,43 @@ namespace InstantScheduler.Controls
     /// </summary>
     public partial class PostView : UserControl
     {
-        public PostView(InstaSharp.Models.Media post)
+        private InstaMedia Media; 
+
+        public PostView(InstaMedia media)
         {
             InitializeComponent();
+            this.Media = media; 
 
-            lblDisplayName.Content = post.User.FullName;
-            lblUsername.Content = post.User.Username;
-            lblCreatedAt.Content = post.CreatedTime.ToString("YYYY-MM-DD");
-            txtCaption.Text = post.Caption.Text; 
         }
 
-        public PostView()
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-        }
+            this.lblUsername.Content = this.Media.User.UserName;
+            this.lblDisplayName.Content = this.Media.User.FullName;
+            this.profileImage.Fill = new ImageBrush(new BitmapImage(new Uri(this.Media.User.ProfilePicture)));
+            this.lblCreatedAt.Content = this.Media.Caption.CreatedAt.ToString("YYYY-mm-dd");
 
+            this.pnlImages.Children.Clear(); 
+
+            this.Media.Images.ForEach(image =>
+            {
+                var i = new Image
+                {
+                    Source = new BitmapImage(new Uri(image.URI)),
+                    Height = image.Height,
+                    Width = image.Width
+                };
+            });
+
+            this.txtCaption.Text = this.Media.Caption.Text;
+            this.lblLikeCount.Content = this.Media.LikesCount;
+
+            pnlComments.Children.Clear(); 
+
+            this.Media.PreviewComments.ForEach(c =>
+            {
+                pnlComments.Children.Add(new CommentView(c));
+            }); 
+        }
     }
 }

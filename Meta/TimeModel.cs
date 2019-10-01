@@ -10,6 +10,6 @@ namespace InstantScheduler.Meta
     {
         public int Hour { get; set; }
         public int Minute { get; set; }
-        public bool MyProperty { get; set; }
+        public bool IsMorning { get; set; }
     }
 }

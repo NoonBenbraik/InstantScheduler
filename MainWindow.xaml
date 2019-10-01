@@ -24,15 +24,15 @@
             <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Stretch="UniformToFill" Source=".\src\img\header.png" Margin="0,0,-0.4,0"/>
             <Image Grid.Row="0" Grid.Column="2" Stretch="Uniform" Source=".\src\img\logo.png" Margin="0.6,0,0.8,0"/>
 
-            <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="2" Foreground="#bd3a57" IsIndeterminate="True" Margin="0,0,-0.4,0"/>
+            <ProgressBar Name="progressBar" Visibility="Collapsed" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="2" Foreground="#bd3a57" IsIndeterminate="True" Margin="0,0,-0.4,0"/>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="2,10,1.4,10.4">
                 <Label Content="Username" Margin="5"  FontSize="14" FontFamily="calibri" FontWeight="Bold" HorizontalContentAlignment="Right"/>
                 <Label Content="Password" Margin="5" Grid.Column="1" Grid.Row="1" FontSize="14" FontFamily="calibri" FontWeight="Bold" HorizontalContentAlignment="Right"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="0.6,10,9.8,10.4">
-                <TextBox  Margin="5"  FontSize="14" FontFamily="calibri" FontWeight="Bold" HorizontalContentAlignment="Center" Height="24"/>
-                <TextBox  Margin="5" Grid.Column="1" Grid.Row="1" FontSize="14" FontFamily="calibri" FontWeight="Bold" HorizontalContentAlignment="Center" Height="24"/>
-                <Button Name="btnLogin" Click="btnLogin_Click" Content="Login" Background="#bd3a57" Foreground="White" FontFamily="calibri" FontWeight="Black" Margin="5">
+                <TextBox Name="txtUsername" TextChanged="txtUsername_TextChanged" Margin="5"  FontSize="14" FontFamily="calibri" FontWeight="Bold" HorizontalContentAlignment="Center" Height="24"/>
+                <PasswordBox Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged"  Margin="5" Grid.Column="1" Grid.Row="1" FontSize="14" FontFamily="calibri" FontWeight="Bold" HorizontalContentAlignment="Center" Height="24"/>
+                <Button Name="btnLogin" IsEnabled="False" Click="btnLogin_Click" Content="Login" Background="#bd3a57" Foreground="White" FontFamily="calibri" FontWeight="Black" Margin="5">
                 </Button>
             </StackPanel>
 
