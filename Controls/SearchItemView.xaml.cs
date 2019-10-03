@@ -17,28 +17,14 @@ using System.Windows.Shapes;
 namespace InstantScheduler.Controls
 {
     /// <summary>
-    /// Interaction logic for SearchesView.xaml
+    /// Interaction logic for SearchItemView.xaml
     /// </summary>
-    public partial class SearchesView : UserControl
+    public partial class SearchItemView : UserControl
     {
-        UserModel User; 
-
-        public SearchesView(UserModel user)
+        public SearchItemView(SearchModel item)
         {
             InitializeComponent();
-            this.User = user; 
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            pnlSearches.Children.Clear(); 
-
-            this.User.Searches.ForEach(s => pnlSearches.Children.Add(new SearchItemView(s))); 
-        }
-
-        private void Reset()
-        {
-
+            lblName.Content = item.Name;
         }
     }
 }

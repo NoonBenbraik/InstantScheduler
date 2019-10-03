@@ -43,7 +43,7 @@ namespace InstantScheduler.Controls
 
             User.Schedules.ForEach(s =>
             {
-
+                pnlSchedules.Children.Add(new ScheduleItemView(s)); 
             });
         }
 

@@ -17,28 +17,16 @@ using System.Windows.Shapes;
 namespace InstantScheduler.Controls
 {
     /// <summary>
-    /// Interaction logic for SearchesView.xaml
+    /// Interaction logic for TaskItemView.xaml
     /// </summary>
-    public partial class SearchesView : UserControl
+    public partial class TaskItemView : UserControl
     {
-        UserModel User; 
 
-        public SearchesView(UserModel user)
+        public TaskItemView(TaskModel item)
         {
             InitializeComponent();
-            this.User = user; 
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            pnlSearches.Children.Clear(); 
-
-            this.User.Searches.ForEach(s => pnlSearches.Children.Add(new SearchItemView(s))); 
-        }
-
-        private void Reset()
-        {
-
+            lblName.Content = item.Name;
+            progressBar.Value = (int)item.CompletedPercentage; 
         }
     }
 }

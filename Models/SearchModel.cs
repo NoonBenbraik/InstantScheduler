@@ -6,7 +6,7 @@ namespace InstantScheduler.Models
     public class SearchModel
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
         public string InStrings { get; set; }
         public string ExStrings { get; set; }
         public List<Location> InLocations { get; set; }

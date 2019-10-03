@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InstantScheduler.Controls"
              mc:Ignorable="d" 
-             Height="Auto" d:DesignWidth="700" MinWidth="600" MaxWidth="700">
+             Height="Auto" d:DesignWidth="700" MinWidth="600" MaxWidth="700"
+             Loaded="UserControl_Loaded">
     <Grid>
         <Border Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="5" Padding="5" CornerRadius="10" Background="White" BorderThickness="0.5" BorderBrush="#999">
 
@@ -40,6 +41,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -53,50 +55,53 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="6" BorderThickness="0, 0, 0.5, 0" BorderBrush="#999"/>
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="6" BorderThickness="0, 0, 0.5, 0" BorderBrush="#999"/>
+                        <Label Grid.Row="0" Grid.ColumnSpan="1" Content="Title" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
 
-                        <Label Grid.Row="0" Grid.ColumnSpan="4" Content="Search words" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <Button  Content="include" Grid.Row="1"  Grid.Column="0" Margin="5"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Search word" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                        <Button Content="exclude" Grid.Row="1"  Grid.Column="3" Margin="5"/>
-                        <ListBox Grid.Row="2" Grid.Column="0" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
+                        <TextBox Name="txtName" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7"  Margin="2, 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+                        <Label Grid.Row="1" Grid.ColumnSpan="4" Content="Search words" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <Button Name="btnTextInclude" Content="include" Grid.Row="2"  Grid.Column="0" Margin="5"/>
+                        <TextBox Name="txtSearchText" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="Search word" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Button Name="btnTextExclude" Content="exclude" Grid.Row="2"  Grid.Column="3" Margin="5"/>
+                        <ListBox Name="lstTextInclude" Grid.Row="3" Grid.Column="0" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
                             <ListBoxItem Content="Hi"/>
                         </ListBox>
-                        <ListBox Grid.Row="2" Grid.Column="2" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Red">
-                            <ListBoxItem Content="Hi"/>
-                        </ListBox>
-
-
-                        <Label Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="4" Content="Search locations" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <Button Content="include" Grid.Row="1"  Grid.Column="4" Margin="5"/>
-                        <TextBox Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Text="Search word" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                        <Button Content="exclude" Grid.Row="1"  Grid.Column="7" Margin="5"/>
-                        <ListBox Grid.Row="2" Grid.Column="4" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
-                            <ListBoxItem Content="Hi"/>
-                        </ListBox>
-                        <ListBox Grid.Row="2" Grid.Column="6" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Red">
+                        <ListBox Name="lstTextExclude" Grid.Row="3" Grid.Column="2" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Red">
                             <ListBoxItem Content="Hi"/>
                         </ListBox>
 
-                        <Label Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="4" Content="Search For" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <UniformGrid Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4">
-                            <CheckBox Content="Users" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                            <CheckBox Content="Posts" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                            <CheckBox Content="Hashtags" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                            <CheckBox Content="Following Me" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+                        <Label Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="4" Content="Search locations" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <Button Name="btnLocationInclude" Content="include" Grid.Row="2"  Grid.Column="4" Margin="5"/>
+                        <TextBox Name="txtSearchLocation" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Search word" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Button Name="btnLocationExclude" Content="exclude" Grid.Row="2"  Grid.Column="7" Margin="5"/>
+                        <ListBox Name="lstLocationInclude" Grid.Row="3" Grid.Column="4" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
+                            <ListBoxItem Content="Hi"/>
+                        </ListBox>
+                        <ListBox Name="lstLocationExclude" Grid.Row="3" Grid.Column="6" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Red">
+                            <ListBoxItem Content="Hi"/>
+                        </ListBox>
+
+                        <Label Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="4" Content="Search For" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <UniformGrid Grid.Row="5" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4">
+                            <CheckBox Name="checkInUsers" Content="Users" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            <CheckBox Name="checkInPosts" Content="Posts" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            <CheckBox Name="checkInHashtags" Content="Hashtags" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            <CheckBox Name="checkInFollowingMe" Content="Following Me" Margin="5, 0" Padding="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                         </UniformGrid>
 
-                        <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" Content="Posts Between" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 5"/>
-                        <Label Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="4" Content="Start" FontFamily="calibri" FontSize="12" FontWeight="Regular" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <DatePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
+                        <Label Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="4" Content="Posts Between" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 5"/>
+                        <Label Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" Content="Start" FontFamily="calibri" FontSize="12" FontWeight="Regular" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <DatePicker Name="dateStart" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
 
 
-                        <Label Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" Content="End" FontFamily="calibri" FontSize="12" FontWeight="Regular" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <DatePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
+                        <Label Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="4" Content="End" FontFamily="calibri" FontSize="12" FontWeight="Regular" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
+                        <DatePicker Name="dateEnd" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
 
 
-                        <Button Content="Reset" Padding="5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="5, 20, 5, 10"/>
-                        <Button Content="Create" Padding="5" Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="2"  Margin="5, 20, 5, 10"/>
+                        <Button Name="btnReset" Content="Reset" Padding="5" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="2" Margin="5, 20, 5, 10"/>
+                        <Button Name="btnCreate" Content="Create" Padding="5" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2"  Margin="5, 20, 5, 10"/>
 
 
                     </Grid>
@@ -106,33 +111,8 @@
 
                 <Label Grid.Row="3" Content="My Searches" FontFamily="calibri" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="10, 5, 10, 0"/>
 
-                <StackPanel Grid.Row="4"  Grid.ColumnSpan="2">
+                <StackPanel Name="pnlSearches" Grid.Row="4"  Grid.ColumnSpan="2">
 
-                    <Border Padding="10" Background="#AAA" CornerRadius="10" MinHeight="100" Margin="10">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-
-
-                            <Image Grid.RowSpan="7" Grid.Column="4" Height="75" Source="../src/img/icons/search.png"/>
-
-                            <Label Content="Example Search" FontFamily="calibri" FontSize="16" FontWeight="Bold" Foreground="Black" Grid.ColumnSpan="4" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-
-                            <Button Content="View" Grid.Row="1" Grid.Column="0" Margin="5" Background="Transparent" Foreground="White" BorderBrush="#FFF"/>
-                            <Button Content="Delete" Grid.Row="1" Grid.Column="1" Margin="5" Background="Transparent" Foreground="Red" BorderBrush="Red"/>
-
-
-                        </Grid>
-                    </Border>
 
 
                 </StackPanel>

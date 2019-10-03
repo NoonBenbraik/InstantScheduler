@@ -1,6 +1,7 @@
 ﻿using InstantScheduler.Meta;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,5 +20,14 @@ namespace InstantScheduler.Models
         public int TaskLimit { get; set; }
         public UserModel User { get; set; }
         public List<TaskModel> Tasks { get; set; }
+
+        [NotMapped]
+        public bool Active
+        {
+            get
+            {
+                return true; 
+            }
+        }
     }
 }
