@@ -13,6 +13,7 @@ namespace InstantScheduler.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public TaskType TaskType { get; set; }
+        public UserModel User { get; set; }
         public ScheduleModel Schedule { get; set; }
         public List<SearchModel> Searches { get; set; }
         public int Repeat { get; set; }

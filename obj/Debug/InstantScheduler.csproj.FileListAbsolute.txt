@@ -37,4 +37,14 @@ C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\Newtonsoft.Json.xml
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\bin\Debug\InstaSharper.dll
-C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojResolveAssemblyReference.cache
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\CommentView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\ScheduleItemView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\SearchItemView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\TaskItemView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\CommentView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\ScheduleItemView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\SearchItemView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\TaskItemView.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csprojAssemblyReference.cache
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CoreCompileInputs.cache
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CopyComplete

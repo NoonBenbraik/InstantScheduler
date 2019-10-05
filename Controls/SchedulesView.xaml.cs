@@ -40,11 +40,6 @@ namespace InstantScheduler.Controls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Reset();
-
-            User.Schedules.ForEach(s =>
-            {
-                pnlSchedules.Children.Add(new ScheduleItemView(s)); 
-            });
         }
 
         private void checkEveryDay_Checked(object sender, RoutedEventArgs e)
@@ -87,6 +82,8 @@ namespace InstantScheduler.Controls
 
         private void Reset()
         {
+
+            txtName.Text = ""; 
             dateStartDate.SelectedDate = DateTime.Now;
             dateEndDate.SelectedDate = DateTime.Now.AddMonths(1);
 
@@ -117,6 +114,15 @@ namespace InstantScheduler.Controls
             checkSaturday.IsChecked = false;
 
             txtDialyLimit.Text = 100.ToString();
+
+
+            using (var context = new InstaContext())
+            {
+                this.User = context.Users.Include("Schedules").Include("Searches").Include("Tasks").FirstOrDefault(u => u.Id == this.User.Id); 
+            }
+
+            pnlSchedules.Children.Clear();
+            this.User.Schedules.ForEach(s => pnlSchedules.Children.Add(new ScheduleItemView(s))); 
         }
 
         private void LoadingState()
@@ -146,7 +152,7 @@ namespace InstantScheduler.Controls
 
             var createdSchedule = new ScheduleModel
             {
-                Name = "Schedule_1",
+                Name = txtName.Text,
                 StartDate = dateStartDate.SelectedDate.GetValueOrDefault(DateTime.Now),
                 EndDate = dateEndDate.SelectedDate.GetValueOrDefault(DateTime.Now.AddMonths(1)),
                 StartTime = new TimeModel
@@ -161,15 +167,18 @@ namespace InstantScheduler.Controls
                     Minute = int.Parse(comboEndTime_Min.Text),
                     IsMorning = comboEndTime_TOD.SelectedIndex == 0
                 },
-                Days = GetDays(),
                 TaskLimit = int.Parse(txtDialyLimit.Text)
-            }; 
+            };
+
+            createdSchedule.SetDays(GetDays()); 
 
             using (var context = new InstaContext())
             {
                 var user = context.Users.Include("Schedules").FirstOrDefault(u => u.Id == User.Id);
                 user.Schedules.Add(createdSchedule);
-                await context.SaveChangesAsync(); 
+                await context.SaveChangesAsync();
+                MessageBox.Show("Schedule: " + createdSchedule.Name + " is created.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                Reset(); 
             }
 
             LoadedState(); 

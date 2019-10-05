@@ -30,7 +30,12 @@ namespace InstantScheduler
         public MainWindow()
         {
             InitializeComponent();
-            user = new UserSessionData(); 
+            user = new UserSessionData();
+
+            #region hidden
+            txtUsername.Text = "NoonEasy";
+            txtPassword.Password = "noon.24016750";
+            #endregion
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)

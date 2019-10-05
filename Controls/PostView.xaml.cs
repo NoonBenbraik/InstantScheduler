@@ -35,21 +35,25 @@ namespace InstantScheduler.Controls
             this.lblUsername.Content = this.Media.User.UserName;
             this.lblDisplayName.Content = this.Media.User.FullName;
             this.profileImage.Fill = new ImageBrush(new BitmapImage(new Uri(this.Media.User.ProfilePicture)));
-            this.lblCreatedAt.Content = this.Media.Caption.CreatedAt.ToString("YYYY-mm-dd");
+            //this.lblCreatedAt.Content = this.Media.Caption.CreatedAt.ToString("YYYY-mm-dd");
 
             this.pnlImages.Children.Clear(); 
 
             this.Media.Images.ForEach(image =>
             {
-                var i = new Image
+                pnlImages.Children.Add(new Image
                 {
                     Source = new BitmapImage(new Uri(image.URI)),
                     Height = image.Height,
                     Width = image.Width
-                };
+                }); 
             });
 
-            this.txtCaption.Text = this.Media.Caption.Text;
+            if (this.Media.Caption != null)
+                this.txtCaption.Text = this.Media.Caption.Text;
+            else
+                this.txtCaption.Text = ""; 
+
             this.lblLikeCount.Content = this.Media.LikesCount;
 
             pnlComments.Children.Clear(); 

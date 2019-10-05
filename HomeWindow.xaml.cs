@@ -39,6 +39,7 @@ namespace InstantScheduler
             var _user = await Api.GetCurrentUserAsync(); 
             if (_user.Succeeded)
             {
+                
                 this.CurrentUser = _user.Value;
 
                 using (var context = new InstaContext())
@@ -55,7 +56,7 @@ namespace InstantScheduler
                         context.SaveChanges(); 
                     }
 
-                    this.UserModel = context.Users.First(u => this.CurrentUser.Pk == u.PK);
+                    this.UserModel = context.Users.Include("Schedules").Include("Searches").Include("Tasks").First(u => this.CurrentUser.Pk == u.PK);
                     this.UserModel.LastLogin = DateTime.Now;
                     context.SaveChanges();
                 }
@@ -71,42 +72,42 @@ namespace InstantScheduler
             }
 
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new FeedView()); 
+            pnlMainContent.Children.Add(new FeedView(this.Api)); 
         }
 
 
         private void btnFeed_Click(object sender, RoutedEventArgs e)
         {
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new FeedView());
+            pnlMainContent.Children.Add(new FeedView(this.Api));
 
         }
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new ProfileView());
+            pnlMainContent.Children.Add(new ProfileView(this.Api, this.UserModel.PK));
 
         }
 
         private void btnSchedules_Click(object sender, RoutedEventArgs e)
         {
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new SchedulesView());
+            pnlMainContent.Children.Add(new SchedulesView(this.UserModel));
 
         }
 
         private void btnSearches_Click(object sender, RoutedEventArgs e)
         {
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new SearchesView());
+            pnlMainContent.Children.Add(new SearchesView(this.UserModel));
 
         }
 
         private void btnTasks_Click(object sender, RoutedEventArgs e)
         {
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new TasksView());
+            pnlMainContent.Children.Add(new TasksView(this.UserModel));
 
         }
 
