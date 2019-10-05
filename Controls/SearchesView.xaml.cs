@@ -1,4 +1,5 @@
-﻿using InstantScheduler.Models;
+﻿using InstantScheduler.DAL;
+using InstantScheduler.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,18 @@ namespace InstantScheduler.Controls
     /// </summary>
     public partial class SearchesView : UserControl
     {
-        UserModel User; 
+        UserModel User;
+        List<Location> ExLocations;
+        List<Location> InLocations;
+        List<string> ExTexts;
+        List<string> InTexts; 
 
         public SearchesView(UserModel user)
         {
             InitializeComponent();
-            this.User = user; 
+            this.User = user;
+
+            Reset(); 
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -38,7 +45,63 @@ namespace InstantScheduler.Controls
 
         private void Reset()
         {
+            using (var context = new InstaContext())
+            {
+                this.User = context.Users.Include("Schedules").Include("Searches").Include("Tasks").FirstOrDefault(u => u.Id == this.User.Id); 
+            }
 
+            pnlSearches.Children.Clear();
+            this.User.Searches.ForEach(s => pnlSearches.Children.Add(new SearchItemView(s)));
+
+            txtName.Text = "";
+            txtSearchText.Text = "";
+            txtSearchLocation.Text = "";
+
+            InLocations = new List<Location>();
+            lstLocationInclude.ItemsSource = null;
+            lstLocationInclude.ItemsSource = InLocations; 
+
+            ExLocations = new List<Location>();
+            lstLocationExclude.ItemsSource = null;
+            lstLocationExclude.ItemsSource = ExLocations; 
+
+            InTexts = new List<string>();
+            lstTextInclude.ItemsSource = null;
+            lstTextInclude.ItemsSource = InTexts; 
+
+            ExTexts = new List<string>();
+            lstTextExclude.ItemsSource = null;
+            lstTextExclude.ItemsSource = ExTexts;
+
+            checkInUsers.IsChecked = false;
+            checkInHashtags.IsChecked = false;
+            checkInPosts.IsChecked = false;
+            checkInFollowingMe.IsChecked = false; 
+        
+        }
+
+        private void BtnTextInclude_Click(object sender, RoutedEventArgs e)
+        {
+            InTexts.Add(txtSearchText.Text);
+            lstTextInclude.ItemsSource = null;
+            lstTextInclude.ItemsSource = InTexts;
+            txtSearchText.Text = ""; 
+        }
+
+        private void BtnTextExclude_Click(object sender, RoutedEventArgs e)
+        {
+            ExTexts.Add(txtSearchText.Text);
+            lstTextExclude.ItemsSource = null;
+            lstTextExclude.ItemsSource = ExTexts;
+            txtSearchText.Text = "";
+        }
+
+        private void LstTextInclude_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ExTexts.Remove((string)lstTextExclude.SelectedItem);
+            lstTextExclude.ItemsSource = null;
+            lstTextExclude.ItemsSource = ExTexts;
+            txtSearchText.Text = "";
         }
     }
 }

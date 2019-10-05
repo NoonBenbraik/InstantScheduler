@@ -35,6 +35,9 @@ namespace InstantScheduler.Controls
                 comboStartTime_Min.Items.Add(i);
                 comboEndTime_Min.Items.Add(i);
             }
+
+            checkEveryDay.Checked += checkEveryDay_Checked; 
+            checkEveryDay.Unchecked += checkEveryDay_Unchecked;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

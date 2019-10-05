@@ -96,9 +96,7 @@ namespace InstantScheduler.Controls
             }
 
             txtName.Text = "";
-            comboTaskType.ItemsSource = typeof(TaskType).GetProperties().ToList(); /* Check this */
-            comboTaskType.DisplayMemberPath = "Name"; 
-            comboTaskType.SelectedIndex = 0;
+            comboTaskType.ItemsSource = Enum.GetValues(typeof(TaskType)).Cast<TaskType>(); ; /* Check this */
 
             if (this.User.Schedules.Count > 0)
             {

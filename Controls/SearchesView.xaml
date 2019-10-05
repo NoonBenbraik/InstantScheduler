@@ -42,7 +42,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -58,17 +58,15 @@
                         <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="6" BorderThickness="0, 0, 0.5, 0" BorderBrush="#999"/>
                         <Label Grid.Row="0" Grid.ColumnSpan="1" Content="Title" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
 
-                        <TextBox Name="txtName" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7"  Margin="2, 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Name="txtName" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7" Padding="2" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
 
                         <Label Grid.Row="1" Grid.ColumnSpan="4" Content="Search words" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <Button Name="btnTextInclude" Content="include" Grid.Row="2"  Grid.Column="0" Margin="5"/>
+                        <Button Name="btnTextInclude" Content="include" Click="BtnTextInclude_Click" Grid.Row="2"  Grid.Column="0" Margin="5"/>
                         <TextBox Name="txtSearchText" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="Search word" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                        <Button Name="btnTextExclude" Content="exclude" Grid.Row="2"  Grid.Column="3" Margin="5"/>
-                        <ListBox Name="lstTextInclude" Grid.Row="3" Grid.Column="0" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
-                            <ListBoxItem Content="Hi"/>
+                        <Button Name="btnTextExclude" Click="BtnTextExclude_Click" Content="exclude" Grid.Row="2"  Grid.Column="3" Margin="5"/>
+                        <ListBox Name="lstTextInclude" MouseDoubleClick="LstTextInclude_MouseDoubleClick" Grid.Row="3" Grid.Column="0" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
                         </ListBox>
                         <ListBox Name="lstTextExclude" Grid.Row="3" Grid.Column="2" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Red">
-                            <ListBoxItem Content="Hi"/>
                         </ListBox>
 
 
@@ -77,10 +75,8 @@
                         <TextBox Name="txtSearchLocation" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Search word" Margin="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                         <Button Name="btnLocationExclude" Content="exclude" Grid.Row="2"  Grid.Column="7" Margin="5"/>
                         <ListBox Name="lstLocationInclude" Grid.Row="3" Grid.Column="4" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Green">
-                            <ListBoxItem Content="Hi"/>
                         </ListBox>
                         <ListBox Name="lstLocationExclude" Grid.Row="3" Grid.Column="6" Height="100" Grid.ColumnSpan="2" Margin="5" Foreground="Red">
-                            <ListBoxItem Content="Hi"/>
                         </ListBox>
 
                         <Label Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="4" Content="Search For" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
