@@ -23,7 +23,6 @@ namespace InstantScheduler.DAL
         public DbSet<SearchModel> Searches { get; set; }
         public DbSet<TaskModel> Tasks { get; set; }
 
-       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -51,7 +50,7 @@ namespace InstantScheduler.DAL
             // Many to many? 
             modelBuilder.Entity<SearchModel>()
                 .HasMany<TaskModel>(s => s.Tasks)
-                .WithMany(t => t.Searches); 
+                .WithMany(t => t.Searches);
 
             modelBuilder.Entity<TaskModel>()
                 .HasRequired<UserModel>(t => t.User);
@@ -60,6 +59,7 @@ namespace InstantScheduler.DAL
                 .HasRequired<ScheduleModel>(t => t.Schedule); 
 
             base.OnModelCreating(modelBuilder);
+
         }
 
     }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstantScheduler.Models
 {
@@ -9,8 +11,8 @@ namespace InstantScheduler.Models
         public string Name { get; set; }
         public string InStrings { get; set; }
         public string ExStrings { get; set; }
-        public List<Location> InLocations { get; set; }
-        public List<Location> ExLocations { get; set; }
+        public string InLocations { get; set; }
+        public string ExLocations { get; set; }
         public bool InUsers { get; set; }
         public bool InHashtags { get; set; }
         public bool InPosts { get; set; }
@@ -19,5 +21,25 @@ namespace InstantScheduler.Models
         public DateTime EndDate { get; set; }
         public UserModel User { get; set; }
         public List<TaskModel> Tasks { get; set; }
+
+        public List<Location> GetInLocations()
+        {
+            return JsonConvert.DeserializeObject<List<Location>>(this.InLocations);
+        }
+
+        public List<Location> GetExLocations()
+        {
+            return JsonConvert.DeserializeObject<List<Location>>(this.ExLocations);
+        }
+
+        public void SetInLocations(List<Location> locations)
+        {
+            this.InLocations = JsonConvert.SerializeObject(locations);
+        }
+
+        public void SetExLocations(List<Location> locations)
+        {
+            this.ExLocations = JsonConvert.SerializeObject(locations);
+        }
     }
 }

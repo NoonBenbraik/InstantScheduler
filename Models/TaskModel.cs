@@ -24,7 +24,7 @@ namespace InstantScheduler.Models
         {
             get
             {
-                return ((Repeat / Exectued) * 100); 
+                return (((double)Exectued / Repeat) * 100); 
             }
         }
 

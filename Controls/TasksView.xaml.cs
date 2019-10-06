@@ -25,19 +25,17 @@ namespace InstantScheduler.Controls
     {
         UserModel User;
         List<SearchModel> SelectedSearches;
+        List<SearchModel> SavedSearches; 
 
         public TasksView(UserModel user)
         {
             InitializeComponent();
             this.User = user;
-            Reset();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            pnlTasks.Children.Clear();
-
-            this.User.Tasks.ForEach(t => pnlTasks.Children.Add(new TaskItemView(t))); 
+            Reset(); 
         }
 
         private void txtRepeatCount_TextChanged(object sender, TextChangedEventArgs e)
@@ -58,42 +56,56 @@ namespace InstantScheduler.Controls
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            Reset(); 
+            var result = MessageBox.Show("Reset?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning); 
+            if (result == MessageBoxResult.Yes)
+                Reset(); 
         }
 
         private async void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             btnCreate.IsEnabled = false;
             btnReset.IsEnabled = false;
-            await Create();
-            Reset();
+
+           try
+            {
+                using (var context = new InstaContext())
+                {
+                    var task = new TaskModel
+                    {
+                        Name = txtName.Text,
+                        TaskType = (TaskType)comboTaskType.SelectedItem,
+                        Searches = SelectedSearches,
+                        Schedule = context.Schedules.FirstOrDefault(sc => sc.Id == (int)comboSchedule.SelectedValue),
+                        Repeat = int.Parse(txtRepeatCount.Text)
+                    };
+
+
+                    var user = context.Users.Include("Tasks").FirstOrDefault(u => u.Id == this.User.Id);
+                    user.Tasks.Add(task);
+                    await context.SaveChangesAsync();
+                    MessageBox.Show("Task: " + task.Name + " created successfully.");
+                    Reset();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); 
+            }
+
             btnCreate.IsEnabled = true;
             btnReset.IsEnabled = true;
         }
 
-        private async Task Create()
-        {
-            var task = new TaskModel
-            {
-                Name = txtName.Text,
-                TaskType = (TaskType)comboTaskType.SelectedItem,
-                Searches = SelectedSearches,
-                Schedule = (ScheduleModel)comboSchedule.SelectedItem,
-                Repeat = int.Parse(txtRepeatCount.Text)
-            };
 
-            using (var context = new InstaContext())
-            {
-                this.User.Tasks.Add(task);
-                await context.SaveChangesAsync();
-            }
-        }
         private void Reset()
         {
             using (var context = new InstaContext())
             {
                 this.User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == this.User.Id); 
             }
+
+            pnlTasks.Children.Clear();
+            this.User.Tasks.ForEach(t => pnlTasks.Children.Add(new TaskItemView(t)));
 
             txtName.Text = "";
             comboTaskType.ItemsSource = Enum.GetValues(typeof(TaskType)).Cast<TaskType>(); ; /* Check this */
@@ -109,18 +121,55 @@ namespace InstantScheduler.Controls
             SelectedSearches = new List<SearchModel>();
             lstSelectedSearches.ItemsSource = null;
             lstSelectedSearches.ItemsSource = SelectedSearches;
-            lstSelectedSearches.ItemsSource = this.User.Searches;
             lstSelectedSearches.DisplayMemberPath = "Name";
             lstSelectedSearches.SelectedValuePath = "Id";
 
-            txtSeachSearches.Text = ""; 
+            txtSeachSearches.Text = "";
+
+            this.SavedSearches = this.User.Searches; 
 
             lstSavedSearches.ItemsSource = null; 
-            lstSavedSearches.ItemsSource = this.User.Searches;
+            lstSavedSearches.ItemsSource = this.SavedSearches;
             lstSavedSearches.DisplayMemberPath = "Name";
             lstSavedSearches.SelectedValuePath = "Id";
 
             txtRepeatCount.Text = "10"; 
+        }
+
+        private void TxtSeachSearches_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tempSearchList = this.SavedSearches.Where(s => s.Name.Contains(txtSeachSearches.Text));
+            lstSavedSearches.ItemsSource = null;
+            lstSavedSearches.ItemsSource = tempSearchList;
+            lstSavedSearches.DisplayMemberPath = "Name"; 
+        }
+
+        private void LstSavedSearches_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SelectedSearches.Add((SearchModel)lstSavedSearches.SelectedItem);
+            SavedSearches.Remove((SearchModel)lstSavedSearches.SelectedItem);
+
+            lstSelectedSearches.ItemsSource = null;
+            lstSelectedSearches.ItemsSource = SelectedSearches;
+            lstSelectedSearches.DisplayMemberPath = "Name";
+
+            lstSavedSearches.ItemsSource = null;
+            lstSavedSearches.ItemsSource = SavedSearches;
+            lstSavedSearches.DisplayMemberPath = "Name";
+        }
+
+        private void LstSelectedSearches_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SavedSearches.Add((SearchModel)lstSelectedSearches.SelectedItem);
+            SelectedSearches.Remove((SearchModel)lstSelectedSearches.SelectedItem);
+
+            lstSelectedSearches.ItemsSource = null;
+            lstSelectedSearches.ItemsSource = SelectedSearches;
+            lstSelectedSearches.DisplayMemberPath = "Name";
+
+            lstSavedSearches.ItemsSource = null;
+            lstSavedSearches.ItemsSource = SavedSearches;
+            lstSavedSearches.DisplayMemberPath = "Name";
         }
     }
 }

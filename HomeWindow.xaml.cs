@@ -100,7 +100,7 @@ namespace InstantScheduler
         private void btnSearches_Click(object sender, RoutedEventArgs e)
         {
             pnlMainContent.Children.Clear();
-            pnlMainContent.Children.Add(new SearchesView(this.UserModel));
+            pnlMainContent.Children.Add(new SearchesView(this.UserModel, this.Api));
 
         }
 
