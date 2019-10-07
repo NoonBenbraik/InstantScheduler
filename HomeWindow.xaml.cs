@@ -34,8 +34,34 @@ namespace InstantScheduler
             this.Api = api; 
         }
 
+        private void DisableButtons()
+        {
+            btnFeed.IsEnabled = false;
+            btnProfile.IsEnabled = false;
+            btnSchedules.IsEnabled = false;
+            btnSearches.IsEnabled = false;
+            btnTasks.IsEnabled = false;
+            btnMessages.IsEnabled = false;
+            btnSearch.IsEnabled = false;
+            txtSearchHere.IsEnabled = false; 
+        }
+
+        private void EnableButtons()
+        {
+            btnFeed.IsEnabled = true;
+            btnProfile.IsEnabled = true;
+            btnSchedules.IsEnabled = true;
+            btnSearches.IsEnabled = true;
+            btnTasks.IsEnabled = true;
+            btnMessages.IsEnabled = true;
+            btnSearch.IsEnabled = true;
+            txtSearchHere.IsEnabled = true;
+        }
+
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Title = "Home - Feed";
+            DisableButtons(); 
             var _user = await Api.GetCurrentUserAsync(); 
             if (_user.Succeeded)
             {
@@ -61,6 +87,8 @@ namespace InstantScheduler
                     context.SaveChanges();
                 }
 
+                EnableButtons(); 
+
                 profileImage.Fill = new ImageBrush(new BitmapImage(new Uri(this.CurrentUser.ProfilePicture)));
                 lblUsername.Content = this.CurrentUser.UserName;
                 progressBar.Visibility = Visibility.Hidden; 
@@ -78,6 +106,7 @@ namespace InstantScheduler
 
         private void btnFeed_Click(object sender, RoutedEventArgs e)
         {
+            this.Title = "Home - Feed";
             pnlMainContent.Children.Clear();
             pnlMainContent.Children.Add(new FeedView(this.Api));
 
@@ -85,6 +114,7 @@ namespace InstantScheduler
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
+            this.Title = "Home - My Profile";
             pnlMainContent.Children.Clear();
             pnlMainContent.Children.Add(new ProfileView(this.Api, this.UserModel.PK));
 
@@ -92,6 +122,7 @@ namespace InstantScheduler
 
         private void btnSchedules_Click(object sender, RoutedEventArgs e)
         {
+            this.Title = "Home - Schedules";
             pnlMainContent.Children.Clear();
             pnlMainContent.Children.Add(new SchedulesView(this.UserModel));
 
@@ -99,6 +130,7 @@ namespace InstantScheduler
 
         private void btnSearches_Click(object sender, RoutedEventArgs e)
         {
+            this.Title = "Home - Searches";
             pnlMainContent.Children.Clear();
             pnlMainContent.Children.Add(new SearchesView(this.UserModel, this.Api));
 
@@ -106,6 +138,7 @@ namespace InstantScheduler
 
         private void btnTasks_Click(object sender, RoutedEventArgs e)
         {
+            this.Title = "Home - Tasks";
             pnlMainContent.Children.Clear();
             pnlMainContent.Children.Add(new TasksView(this.UserModel));
 

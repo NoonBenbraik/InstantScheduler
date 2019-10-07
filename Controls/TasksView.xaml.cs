@@ -1,6 +1,7 @@
 ﻿using InstantScheduler.DAL;
 using InstantScheduler.Meta;
 using InstantScheduler.Models;
+using InstantScheduler.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,14 @@ namespace InstantScheduler.Controls
     {
         UserModel User;
         List<SearchModel> SelectedSearches;
-        List<SearchModel> SavedSearches; 
+        List<SearchModel> SavedSearches;
+        ValuesModel Values; 
 
         public TasksView(UserModel user)
         {
             InitializeComponent();
             this.User = user;
+            Values = new ValuesModel(); 
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -61,7 +64,7 @@ namespace InstantScheduler.Controls
                 Reset(); 
         }
 
-        private async void btnCreate_Click(object sender, RoutedEventArgs e)
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             btnCreate.IsEnabled = false;
             btnReset.IsEnabled = false;
@@ -79,13 +82,14 @@ namespace InstantScheduler.Controls
                         Repeat = int.Parse(txtRepeatCount.Text)
                     };
 
-
+                    task.SetValues(this.Values); 
                     var user = context.Users.Include("Tasks").FirstOrDefault(u => u.Id == this.User.Id);
                     user.Tasks.Add(task);
-                    await context.SaveChangesAsync();
+                    context.SaveChanges();
                     MessageBox.Show("Task: " + task.Name + " created successfully.");
-                    Reset();
                 }
+
+                Reset();
             }
             catch (Exception ex)
             {
@@ -101,14 +105,16 @@ namespace InstantScheduler.Controls
         {
             using (var context = new InstaContext())
             {
-                this.User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == this.User.Id); 
+                this.User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == this.User.Id);
+                pnlTasks.Children.Clear();
+                this.User.Tasks.ForEach(t => pnlTasks.Children.Add(new TaskItemView(t)));
             }
-
-            pnlTasks.Children.Clear();
-            this.User.Tasks.ForEach(t => pnlTasks.Children.Add(new TaskItemView(t)));
 
             txtName.Text = "";
             comboTaskType.ItemsSource = Enum.GetValues(typeof(TaskType)).Cast<TaskType>(); ; /* Check this */
+            comboTaskType.SelectedIndex = 0; 
+
+            Values = new ValuesModel(); 
 
             if (this.User.Schedules.Count > 0)
             {
@@ -170,6 +176,43 @@ namespace InstantScheduler.Controls
             lstSavedSearches.ItemsSource = null;
             lstSavedSearches.ItemsSource = SavedSearches;
             lstSavedSearches.DisplayMemberPath = "Name";
+        }
+
+        private void BtnInputValues_Click(object sender, RoutedEventArgs e)
+        {
+            switch ((TaskType)comboTaskType.SelectedItem)
+            {
+                case TaskType.Post:
+                    new InputValuesWindow(ref Values, TaskType.Post).ShowDialog(); 
+                    break;
+                case TaskType.Comment:
+                    new InputValuesWindow(ref Values, TaskType.Comment).ShowDialog(); 
+                    break;
+                case TaskType.DM:
+                    new InputValuesWindow(ref Values, TaskType.DM).ShowDialog(); 
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ComboTaskType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch ((TaskType)comboTaskType.SelectedItem)
+            {
+                case TaskType.Post:
+                    btnInputValues.IsEnabled = true;
+                    break;
+                case TaskType.Comment:
+                    btnInputValues.IsEnabled = true;
+                    break;
+                case TaskType.DM:
+                    btnInputValues.IsEnabled = true;
+                    break;
+                default:
+                    btnInputValues.IsEnabled = false;
+                    break;
+            }
         }
     }
 }

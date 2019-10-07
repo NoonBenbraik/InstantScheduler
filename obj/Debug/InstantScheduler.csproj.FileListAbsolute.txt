@@ -50,3 +50,6 @@ C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler.csproj.CopyComplete
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\LocationSearchWindow.g.cs
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\LocationSearchWindow.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\InputValuesWindow.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler_Content.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\InputValuesWindow.baml

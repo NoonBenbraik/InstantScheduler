@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\InputValuesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LocationSearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +170,10 @@
     <Compile Include="DAL\UserProcessor.cs" />
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ValuesModel.cs" />
+    <Compile Include="Windows\InputValuesWindow.xaml.cs">
+      <DependentUpon>InputValuesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LocationSearchWindow.xaml.cs">
       <DependentUpon>LocationSearchWindow.xaml</DependentUpon>
@@ -219,7 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\img\Header.png" />
-    <Resource Include="src\img\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\img\icons\feed.png" />
@@ -248,6 +255,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\img\icons\FeedHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\img\icons\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\img\Logo.png" />
+    <Content Include="src\img\videofiller.mkv" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

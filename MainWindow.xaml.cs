@@ -43,9 +43,11 @@ namespace InstantScheduler
             progressBar.Visibility = Visibility.Visible;
             txtPassword.IsEnabled = false;
             txtUsername.IsEnabled = false;
+            btnLogin.IsEnabled = false; 
 
             await Login();
 
+            btnLogin.IsEnabled = true;
             progressBar.Visibility = Visibility.Hidden;
             txtPassword.IsEnabled = true;
             txtUsername.IsEnabled = true;
@@ -61,7 +63,7 @@ namespace InstantScheduler
         {
             user.UserName = txtUsername.Text;
             user.Password = txtPassword.Password;
-
+            
             this.api = InstaApiBuilder.CreateBuilder()
                 .SetUser(user)
                 .UseLogger(new DebugLogger(LogLevel.All))

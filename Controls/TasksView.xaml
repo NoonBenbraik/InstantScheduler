@@ -60,7 +60,8 @@
                         <TextBox Name="txtName" Grid.Row="1" Padding="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
 
                         <Label Grid.Row="2" Grid.ColumnSpan="4" Content="Task Type" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
-                        <ComboBox Name="comboTaskType" Grid.Row="3" Padding="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
+                        <ComboBox Name="comboTaskType" SelectionChanged="ComboTaskType_SelectionChanged" Grid.Row="3" Padding="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"/>
+                        <Button Name="btnInputValues" Click="BtnInputValues_Click" Grid.Row="3" Grid.Column="3" Content="Input Values" Margin="5"/> 
 
                         <Label Grid.Row="4" Grid.ColumnSpan="4" Content="Schedule" FontFamily="calibri" FontSize="12" FontWeight="Bold" Foreground="#000" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
                         <ComboBox Name="comboSchedule" Grid.Row="5" Padding="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"/>
