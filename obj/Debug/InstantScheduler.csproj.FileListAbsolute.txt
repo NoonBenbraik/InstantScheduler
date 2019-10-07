@@ -53,3 +53,7 @@ C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\InputValuesWindow.g.cs
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\InstantScheduler_Content.g.cs
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\InputValuesWindow.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\MessagesWindow.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\ViewWindows.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\ViewWindows.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\MessagesWindow.baml

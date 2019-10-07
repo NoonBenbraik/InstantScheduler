@@ -20,6 +20,7 @@
                 <ImageBrush Stretch="UniformToFill" ImageSource="../src/img/profilefiller.jpg"/>
             </Ellipse.Fill>
         </Ellipse>
+        <Button Name="btnProfilePic" Click="BtnProfilePic_Click" Height="45" Width="45" Background="Transparent" BorderBrush="Transparent"  Margin="2"/>
 
         <TextBlock Name="commentString" Grid.Column="1" Text="Starting and Ending dates: the schedule will be active between Starting and Ending dates: the schedule will be active between these dates, E.g. from 13, august, 2019 to 30, august, 2019.Starting and Ending dates: the schedule will be active between these dates, E.g. from 13, august, 2019 to 30, august, 2019.Starting and Ending dates: the schedule will be active between these dates, E.g. from 13, august, 2019 to 30, august, 2019.Starting and Ending dates: the schedule will be active between these dates, E.g. from 13, august, 2019 to 30, august, 2019. these dates, E.g. from 13, august, 2019 to 30, august, 2019." TextWrapping="Wrap" Margin="5" Padding="5"/>
     </Grid>

@@ -51,7 +51,8 @@ namespace InstantScheduler.Controls
 
                 if (posts.Succeeded)
                 {
-                    posts.Value.ForEach(p => pnlPosts.Children.Add(new PostView(p))); 
+                    posts.Value.ForEach(p => pnlPosts.Children.Add(new PostView(p, Api)));
+                    progressBar.Visibility = Visibility.Hidden; 
                 }
 
             }

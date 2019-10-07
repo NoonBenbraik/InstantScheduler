@@ -1,6 +1,7 @@
 ﻿using InstantScheduler.Controls;
 using InstantScheduler.DAL;
 using InstantScheduler.Models;
+using InstantScheduler.Windows;
 using InstaSharper.API;
 using InstaSharper.Classes.Models;
 using System;
@@ -146,7 +147,7 @@ namespace InstantScheduler
 
         private void btnMessages_Click(object sender, RoutedEventArgs e)
         {
-
+            new MessagesWindow().Show(); 
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

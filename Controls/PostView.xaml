@@ -27,6 +27,7 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Border BorderBrush="#AAA" BorderThickness="0, 0, 0, 0.5" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
                 <!--#region Post Header -->
                 <Ellipse Name="profileImage" Grid.Column="0" Grid.RowSpan="2" Margin="0, 0, 0, 10">
@@ -34,11 +35,11 @@
                         <ImageBrush Stretch="UniformToFill" ImageSource="../src/img/profilefiller.jpg"/>
                     </Ellipse.Fill>
                 </Ellipse>
+                <Button Name="btnProfilePic" Click="BtnProfilePic_Click" Background="Transparent" BorderBrush="Transparent"  Grid.RowSpan="2" Margin="0, 0, 0, 10"/>
                 <Label Name="lblDisplayName" Content="Fayrouz" Grid.Row="0" Grid.Column="1" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <Label Name="lblCreatedAt" Content="2019-9-17" Foreground="#999" Grid.Row="0" Grid.Column="2" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <Label Name="lblUsername" Content="@Fayrouz" Foreground="#999" Grid.Row="1" Grid.Column="1" Padding="5, 0" FontFamily="calibri" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-                <Border BorderBrush="#AAA" BorderThickness="0, 0, 0, 0.5" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
                 <!--#endregion-->
 

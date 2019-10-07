@@ -42,7 +42,7 @@ namespace InstantScheduler.Controls
 
                 Feed.ForEach(m =>
                 {
-                    pnlPosts.Children.Add(new PostView(m)); 
+                    pnlPosts.Children.Add(new PostView(m, Api)); 
                 }); 
             }
 

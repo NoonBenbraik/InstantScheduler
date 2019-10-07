@@ -82,7 +82,7 @@ namespace InstantScheduler.Windows
         {
             var openFile = new OpenFileDialog();
             openFile.Multiselect = true; 
-            openFile.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFile.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); 
 
             if(openFile.ShowDialog() == true)
@@ -109,9 +109,8 @@ namespace InstantScheduler.Windows
 
         private void BtnAttachVideo_Click(object sender, RoutedEventArgs e)
         {
-
             var openFile = new OpenFileDialog();
-            openFile.Multiselect = false;
+            openFile.Multiselect = true;
             openFile.Filter = "Video files (*.mp4;)|*.mp4;|All files (*.*)|*.*";
             openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 

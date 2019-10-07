@@ -1,0 +1,16 @@
+﻿<Window x:Class="InstantScheduler.Windows.ViewWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InstantScheduler.Windows"
+        mc:Ignorable="d"
+        Title="ViewWindows" Height="Auto" MinWidth="750">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel Name="pnlViewable" Orientation="Vertical">
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

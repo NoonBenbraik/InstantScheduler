@@ -1,4 +1,6 @@
-﻿using InstaSharper.Classes.Models;
+﻿using InstantScheduler.Windows;
+using InstaSharper.API;
+using InstaSharper.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +23,14 @@ namespace InstantScheduler.Controls
     /// </summary>
     public partial class PostView : UserControl
     {
-        private InstaMedia Media; 
+        private InstaMedia Media;
+        IInstaApi Api; 
 
-        public PostView(InstaMedia media)
+        public PostView(InstaMedia media, IInstaApi Api)
         {
             InitializeComponent();
-            this.Media = media; 
-
+            this.Media = media;
+            this.Api = Api; 
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -60,8 +63,15 @@ namespace InstantScheduler.Controls
 
             this.Media.PreviewComments.ForEach(c =>
             {
-                pnlComments.Children.Add(new CommentView(c));
+                pnlComments.Children.Add(new CommentView(c, this.Api));
             }); 
+        }
+
+        private void BtnProfilePic_Click(object sender, RoutedEventArgs e)
+        {
+            var profileView = new ViewWindows();
+            profileView.pnlViewable.Children.Add(new ProfileView(this.Api, this.Media.User.Pk));
+            profileView.ShowDialog(); 
         }
     }
 }
