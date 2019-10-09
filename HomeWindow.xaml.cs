@@ -88,6 +88,8 @@ namespace InstantScheduler
                     context.SaveChanges();
                 }
 
+                TaskWorker.StartBackgroundWorker(this.UserModel.Id, this.Api); 
+
                 EnableButtons(); 
 
                 profileImage.Fill = new ImageBrush(new BitmapImage(new Uri(this.CurrentUser.ProfilePicture)));

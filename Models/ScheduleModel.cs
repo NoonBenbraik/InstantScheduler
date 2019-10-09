@@ -34,15 +34,15 @@ namespace InstantScheduler.Models
             this.Days = JsonConvert.SerializeObject(days); 
         }
 
-
-
-
         [NotMapped]
         public bool Active
         {
             get
             {
-                return true; 
+                return GetDays().Contains(DateTime.Now.DayOfWeek)
+                    && DateTime.Compare(DateTime.Now, this.StartDate) >= 0 && DateTime.Compare(DateTime.Now, this.EndDate) <= 0
+                    && TimeModel.Compare(TimeModel.Now, this.StartTime) >= 0 && TimeModel.Compare(TimeModel.Now, this.EndTime) <= 0;
+                    //&& this.Tasks.Sum(t => t.Exectued) < this.TaskLimit; 
             }
         }
     }

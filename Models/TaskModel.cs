@@ -1,4 +1,5 @@
-﻿using InstantScheduler.Meta;
+﻿using InstantScheduler.DAL;
+using InstantScheduler.Meta;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,23 @@ namespace InstantScheduler.Models
         public int Repeat { get; set; }
         public int Exectued { get; set; }
 
+        
+        [NotMapped]
+        public bool Active
+        {
+            get
+            {
+                Refresh();
+                return this.Schedule.Active && this.CompletedPercentage <= 100;
+            }
+        }
+
         [NotMapped]
         public double CompletedPercentage
         {
             get
             {
+                Refresh(); 
                 return (((double)Exectued / Repeat) * 100); 
             }
         }
@@ -39,5 +52,14 @@ namespace InstantScheduler.Models
         {
             return JsonConvert.DeserializeObject<ValuesModel>(this.Values); 
         }
+
+        private void Refresh()
+        {
+            using (var context = new InstaContext())
+            {
+                this.Exectued = context.Tasks.First(t => t.Id == this.Id).Exectued;
+            }
+        }
+
     }
 }

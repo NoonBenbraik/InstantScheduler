@@ -61,6 +61,5 @@ namespace InstantScheduler.DAL
             base.OnModelCreating(modelBuilder);
 
         }
-
     }
 }

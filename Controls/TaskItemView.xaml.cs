@@ -21,12 +21,22 @@ namespace InstantScheduler.Controls
     /// </summary>
     public partial class TaskItemView : UserControl
     {
-
+        TaskModel Item; 
         public TaskItemView(TaskModel item)
         {
             InitializeComponent();
+            this.Item = item; 
+
             lblName.Content = item.Name;
-            progressBar.Value = (int)item.CompletedPercentage; 
+            progressBar.Value = (int)item.CompletedPercentage;
+
+            System.Timers.Timer timer = new System.Timers.Timer(1000);
+            timer.Elapsed += Timer_Elapsed;
+        }
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            progressBar.Value = (int)Item.CompletedPercentage; 
         }
     }
 }

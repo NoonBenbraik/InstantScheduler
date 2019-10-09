@@ -75,6 +75,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DAL\TaskWorker.cs" />
+    <Compile Include="Meta\Helper.cs" />
     <Compile Include="Windows\MessagesWindow.xaml.cs">
       <DependentUpon>MessagesWindow.xaml</DependentUpon>
     </Compile>
@@ -173,7 +175,6 @@
     </Compile>
     <Compile Include="DAL\InstaContext.cs" />
     <Compile Include="DAL\InstagramAPI.cs" />
-    <Compile Include="DAL\UserProcessor.cs" />
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
