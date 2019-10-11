@@ -7,9 +7,19 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
+using InstantScheduler.Controls;
+using InstantScheduler.DAL;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace InstantScheduler.DAL
 {
@@ -30,7 +40,7 @@ namespace InstantScheduler.DAL
             System.Timers.Timer timer_1 = new System.Timers.Timer();
             timer_1.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                Console.WriteLine("Timer_1 elapsed...");
+                MessageBox.Show("Timer_1 elapsed...");
                 User.Schedules.Where(sc => sc.Active).ToList().ForEach(sc =>
                 {
                     tasks.AddRange(sc.Tasks.Where(t => t.Active && !tasks.Contains(t)));
@@ -42,7 +52,7 @@ namespace InstantScheduler.DAL
             System.Timers.Timer timer_2 = new System.Timers.Timer();
             timer_2.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                Console.WriteLine("Timer_2 elapsed...");
+                MessageBox.Show("Timer_2 elapsed...");
 
                 tasks.AsParallel().ForAll(t =>
                 {
@@ -93,9 +103,11 @@ namespace InstantScheduler.DAL
 
 
         // Done
-        private static async Task RunUnlikeTaskAsync(TaskModel t, IInstaApi api)
+        private static async void RunUnlikeTaskAsync(TaskModel t, IInstaApi api)
         {
-            Console.WriteLine("RunUnlikeTask");
+            MessageBox.Show("RunUnlikeTask - " + t.Name);
+
+            t = t.Refreshed;
 
             List<InstaMedia> medias = new List<InstaMedia>();
 
@@ -116,16 +128,19 @@ namespace InstantScheduler.DAL
                 var result = await api.UnLikeMediaAsync(m.InstaIdentifier);
                 if (result.Succeeded)
                 {
-                    Console.WriteLine("Media Unliked: " + result.Value);
+                    MessageBox.Show("Media Unliked: " + result.Value);
                 }
             });
         }
 
 
         // Done
-        private static async Task RunUnfollowTaskAsync(TaskModel t, IInstaApi api)
+        private static async void RunUnfollowTaskAsync(TaskModel t, IInstaApi api)
         {
-            Console.WriteLine("RunUnfollowTask");
+            MessageBox.Show("RunUnfollowTaskAsync - " + t.Name);
+
+            t = t.Refreshed;
+
             List<InstaUserShort> users = new List<InstaUserShort>();
             var _currentUser = await api.GetCurrentUserAsync();
             InstaCurrentUser currentUser; 
@@ -169,9 +184,12 @@ namespace InstantScheduler.DAL
         }
 
         // DONE
-        private static async Task RunPostTaskAsync(TaskModel t, IInstaApi api)
+        private static async void RunPostTaskAsync(TaskModel t, IInstaApi api)
         {
-            
+            MessageBox.Show("RunPostTaskAsync");
+
+            t = t.Refreshed;
+
             if (t.GetValues().Images.Count > 0)
             {
                 if(t.GetValues().Images.Count > 1)
@@ -242,9 +260,11 @@ namespace InstantScheduler.DAL
         // Done
         private static void RunLikeTask(TaskModel t, IInstaApi api)
         {
-            Console.WriteLine("RunLikeTask");
+            MessageBox.Show("RunLikeTask");
 
             List<InstaMedia> medias = new List<InstaMedia>();
+
+            t = t.Refreshed;
 
             t.Searches.ForEach(s =>
             {
@@ -297,7 +317,7 @@ namespace InstantScheduler.DAL
                 var result = await api.LikeMediaAsync(m.InstaIdentifier);
                 if (result.Succeeded)
                 {
-                    Console.WriteLine("Media Liked: " + result.Value);
+                    MessageBox.Show("Media Liked: " + result.Value);
                 }
             });
         }
@@ -305,9 +325,11 @@ namespace InstantScheduler.DAL
         // Done
         private static void RunFollowTask(TaskModel t, IInstaApi api)
         {
-            Console.WriteLine("RunFollowTask");
+            MessageBox.Show("Running Follow Task - " + t.Name);
 
             List<InstaUserShort> users = new List<InstaUserShort>();
+
+            t = t.Refreshed; 
 
             t.Searches.ForEach(s =>
             {
@@ -351,7 +373,7 @@ namespace InstantScheduler.DAL
                 _users.ForEach(async u =>
                 {
                     var result = await api.FollowUserAsync(u.Pk);
-                    Console.WriteLine("User followed: " + u.FullName);
+                    MessageBox.Show("User followed: " + u.FullName);
                 });
             }); 
         }
@@ -359,7 +381,7 @@ namespace InstantScheduler.DAL
         // DONE
         private static void RunDMTask(TaskModel t, IInstaApi api)
         {
-            Console.WriteLine("RunDMTask");
+            MessageBox.Show("RunDMTask");
 
             t.Searches.ForEach(s =>
             {
@@ -404,7 +426,7 @@ namespace InstantScheduler.DAL
         // DONE
         private static void RunCommentTask(TaskModel t, IInstaApi api)
         {
-            Console.WriteLine("RunCommentTask");
+            MessageBox.Show("RunCommentTask");
 
 
             List<InstaMedia> medias = new List<InstaMedia>();
@@ -459,7 +481,7 @@ namespace InstantScheduler.DAL
                 var result = await api.CommentMediaAsync(m.InstaIdentifier, t.GetValues().Text);
                 if (result.Succeeded)
                 {
-                    Console.WriteLine("Media Commented on: " + result.Value);
+                    MessageBox.Show("Media Commented on: " + result.Value);
                 }
             });
         }

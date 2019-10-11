@@ -61,5 +61,17 @@ namespace InstantScheduler.Models
             }
         }
 
+        [NotMapped]
+        public TaskModel Refreshed
+        {
+            get
+            {
+                using (var context = new InstaContext())
+                {
+                    return context.Tasks.Include("User").Include("Searches").Include("Schedule").FirstOrDefault(tsk => tsk.Id == this.Id); 
+                }
+            }
+        }
+
     }
 }

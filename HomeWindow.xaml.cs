@@ -88,7 +88,14 @@ namespace InstantScheduler
                     context.SaveChanges();
                 }
 
-                TaskWorker.StartBackgroundWorker(this.UserModel.Id, this.Api); 
+                try
+                {
+                    TaskWorker.StartBackgroundWorker(this.UserModel.Id, this.Api);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("TaskWorker.StartBackgroundWorker" + Environment.NewLine + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error); 
+                }
 
                 EnableButtons(); 
 
