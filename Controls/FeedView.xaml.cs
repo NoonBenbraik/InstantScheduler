@@ -34,16 +34,24 @@ namespace InstantScheduler.Controls
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var feed = await this.Api.GetLikeFeedAsync(PaginationParameters.MaxPagesToLoad(1));
-
-            if (feed.Succeeded)
+            try
             {
-                Feed = feed.Value;
+                var feed = await this.Api.GetLikeFeedAsync(PaginationParameters.MaxPagesToLoad(1));
 
-                Feed.ForEach(m =>
+                if (feed.Succeeded)
                 {
-                    pnlPosts.Children.Add(new PostView(m, Api)); 
-                }); 
+                    Feed = feed.Value;
+
+                    Feed.ForEach(m =>
+                    {
+                        pnlPosts.Children.Add(new PostView(m, Api));
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }

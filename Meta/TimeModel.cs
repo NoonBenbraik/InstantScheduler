@@ -30,6 +30,12 @@ namespace InstantScheduler.Meta
 
         public static int Compare(TimeModel t1, TimeModel t2)
         {
+
+            if (t1.Hour == 12 && t1.IsMorning)
+                t1.Hour = 0;
+            if (t2.Hour == 12 && t2.IsMorning)
+                t2.Hour = 0; 
+
             t1.Hour = t1.IsMorning ? t1.Hour : t1.Hour + 12;
             t2.Hour = t2.IsMorning ? t2.Hour : t2.Hour + 12;
 

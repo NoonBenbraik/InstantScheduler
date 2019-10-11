@@ -276,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\img\Logo.png" />
+    <Resource Include="src\img\MainIcon.png" />
     <Content Include="src\img\videofiller.mkv" />
   </ItemGroup>
   <ItemGroup />

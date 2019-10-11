@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InstantScheduler"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="600" Height="600" Width="800" MinWidth="800">
+        Icon="./src/img/MainIcon.png"
+        Title="Instant Scheduler - Welcome" MinHeight="600" Height="600" Width="800" MinWidth="800">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>

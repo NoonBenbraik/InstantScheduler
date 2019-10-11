@@ -33,7 +33,21 @@ namespace InstantScheduler.Controls
         {
             InitializeComponent();
             this.User = user;
-            Values = new ValuesModel(); 
+            Values = new ValuesModel();
+
+            System.Timers.Timer timer = new System.Timers.Timer(5000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Enabled = true; 
+        }
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            //using (var context = new InstaContext())
+            //{
+            //    this.User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == this.User.Id);
+            //    pnlTasks.Children.Clear();
+            //    this.User.Tasks.ForEach(t => pnlTasks.Children.Add(new TaskItemView(t)));
+            //}
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using InstantScheduler.Models;
+﻿using InstantScheduler.DAL;
+using InstantScheduler.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,25 @@ namespace InstantScheduler.Controls
 
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += Timer_Elapsed;
+            timer.Enabled = true; 
         }
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            progressBar.Value = (int)Item.CompletedPercentage; 
+            //progressBar.Value = (int)Item.CompletedPercentage; 
+        }
+
+        private void BtnStop_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to stop this task premenantly?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                using (var context = new InstaContext())
+                {
+                    context.Tasks.FirstOrDefault(t => t.Id == this.Item.Id).Exectued = this.Item.Repeat + 1;
+                    context.SaveChangesAsync(); 
+                }
+            }
+
         }
     }
 }

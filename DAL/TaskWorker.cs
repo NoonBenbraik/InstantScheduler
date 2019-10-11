@@ -40,20 +40,18 @@ namespace InstantScheduler.DAL
             System.Timers.Timer timer_1 = new System.Timers.Timer();
             timer_1.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                MessageBox.Show("Timer_1 elapsed...");
                 User.Schedules.Where(sc => sc.Active).ToList().ForEach(sc =>
                 {
                     tasks.AddRange(sc.Tasks.Where(t => t.Active && !tasks.Contains(t)));
+                    tasks.RemoveAll(t => !t.Active); 
                 });
             };
-            timer_1.Interval = 5000;
+            timer_1.Interval = 10000;
             timer_1.Enabled = true;
 
             System.Timers.Timer timer_2 = new System.Timers.Timer();
             timer_2.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                MessageBox.Show("Timer_2 elapsed...");
-
                 tasks.AsParallel().ForAll(t =>
                 {
                     if (t.Active)
@@ -61,7 +59,7 @@ namespace InstantScheduler.DAL
                 });
             };
 
-            timer_2.Interval = 2000;
+            timer_2.Interval = 5000;
             timer_2.Enabled = true;
         }
 
@@ -98,7 +96,7 @@ namespace InstantScheduler.DAL
                 context.SaveChanges();
             }
 
-            Helper.LogTaskExecute(t);
+            //Helper.LogTaskExecute(t);
         }
 
 
@@ -325,7 +323,7 @@ namespace InstantScheduler.DAL
         // Done
         private static void RunFollowTask(TaskModel t, IInstaApi api)
         {
-            MessageBox.Show("Running Follow Task - " + t.Name);
+            //MessageBox.Show("Running Follow Task - " + t.Name);
 
             List<InstaUserShort> users = new List<InstaUserShort>();
 

@@ -28,7 +28,7 @@
                 <Label Name="lblName" Content="Task Example" FontFamily="calibri" FontSize="16" FontWeight="Bold" Foreground="Black" Grid.ColumnSpan="4" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10, 0"/>
 
                 <Button Name="btnView" Content="View" Grid.Row="1" Grid.Column="0" Margin="5" Background="Transparent" Foreground="Black" BorderBrush="#AAA"/>
-                <Button Name="btnStop" Content="Stop" Grid.Row="1" Grid.Column="1" Margin="5" Background="Transparent" Foreground="Black" BorderBrush="#AAA"/>
+                <Button Name="btnStop" Click="BtnStop_Click" Content="Stop" Grid.Row="1" Grid.Column="1" Margin="5" Background="Transparent" Foreground="#CE3D4F" BorderBrush="#CE3D4F"/>
 
                 <ProgressBar Name="progressBar" Grid.Row="2" Foreground="#CE3D4F" Grid.ColumnSpan="5" Value="25"/>
 

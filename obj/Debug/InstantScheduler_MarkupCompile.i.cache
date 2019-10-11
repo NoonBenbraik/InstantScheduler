@@ -16,5 +16,5 @@ C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantSche
 731450159937
 Controls\CommentView.xaml;Controls\FeedView.xaml;Controls\PostView.xaml;Controls\ProfileView.xaml;Controls\ScheduleItemView.xaml;Controls\SchedulesView.xaml;Controls\SearchesView.xaml;Controls\SearchItemView.xaml;Controls\TaskItemView.xaml;Controls\TasksView.xaml;HomeWindow.xaml;Windows\InputValuesWindow.xaml;Windows\LocationSearchWindow.xaml;MainWindow.xaml;Windows\MessagesWindow.xaml;Windows\ViewWindows.xaml;
 
-False
+True
 
