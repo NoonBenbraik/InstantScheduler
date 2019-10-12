@@ -121,7 +121,8 @@ namespace InstantScheduler.Controls
             {
                 this.User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == this.User.Id);
                 pnlTasks.Children.Clear();
-                this.User.Tasks.ForEach(t => pnlTasks.Children.Add(new TaskItemView(t)));
+                this.User.Tasks.Where(t => !t.Active).ToList().ForEach(t => pnlTasks.Children.Insert(0, new TaskItemView(t)));
+                this.User.Tasks.Where(t => t.Active).ToList().ForEach(t => pnlTasks.Children.Insert(0, new TaskItemView(t)));
             }
 
             txtName.Text = "";

@@ -31,6 +31,11 @@ namespace InstantScheduler.Controls
             lblName.Content = item.Name;
             progressBar.Value = (int)item.CompletedPercentage;
 
+            if (!item.Active)
+            {
+                this.mainBorder.BorderBrush = Brushes.LightGray; 
+            }
+
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += Timer_Elapsed;
             timer.Enabled = true; 
