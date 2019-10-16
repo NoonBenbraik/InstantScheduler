@@ -156,7 +156,7 @@ namespace InstantScheduler
 
         private void btnMessages_Click(object sender, RoutedEventArgs e)
         {
-            new MessagesWindow().Show(); 
+            new MessagesWindow(this.Api).Show(); 
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

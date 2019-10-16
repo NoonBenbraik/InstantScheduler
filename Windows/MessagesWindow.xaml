@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:InstantScheduler.Windows"
         mc:Ignorable="d"
         Title="My Messages" Height="600" MinHeight="600" MinWidth="750"
+        Loaded="Window_Loaded"
         >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,6 +19,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
 
         
@@ -71,5 +73,7 @@
             
         <TextBox Padding="10, 0" Name="txtNewComment" Margin="2" Background="Transparent" VerticalAlignment="Center" BorderBrush="Transparent" Text="Hello"/>
         </Border>
+
+        <ProgressBar Name="progressBar" Grid.Row="3" Grid.ColumnSpan="4" IsIndeterminate="True" Foreground="#CE3D4F" Background="Transparent" BorderBrush="Transparent"/>
     </Grid>
 </Window>

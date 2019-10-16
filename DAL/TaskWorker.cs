@@ -8,18 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
-using InstantScheduler.Controls;
-using InstantScheduler.DAL;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace InstantScheduler.DAL
 {
@@ -27,7 +16,7 @@ namespace InstantScheduler.DAL
     {
         public static void StartBackgroundWorker(int UserId, IInstaApi Api)
         {
-            Console.WriteLine("StartBackgroundWorker");
+            MessageBox.Show("StartBackgroundWorker", "MileStone", MessageBoxButton.OK, MessageBoxImage.Information);
 
             UserModel User;
             using (var context = new InstaContext())
@@ -46,38 +35,40 @@ namespace InstantScheduler.DAL
                     tasks.RemoveAll(t => !t.Active); 
                 });
             };
-            timer_1.Interval = 10000;
+            timer_1.Interval = 20000;
             timer_1.Enabled = true;
 
             System.Timers.Timer timer_2 = new System.Timers.Timer();
             timer_2.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                tasks.AsParallel().ForAll(t =>
+                tasks.ForEach(t =>
                 {
                     if (t.Active)
                         RunTask(t, Api);
                 });
             };
 
-            timer_2.Interval = 5000;
+            timer_2.Interval = 10000;
             timer_2.Enabled = true;
         }
 
         private static void RunTask(TaskModel t, IInstaApi Api)
         {
+            MessageBox.Show($"Task Type: {t.TaskType.ToString()} {Environment.NewLine}Task Name: {t.Name}", "Task Running", MessageBoxButton.OK, MessageBoxImage.Information);
+
             switch (t.TaskType)
             {
                 case TaskType.Comment:
-                    RunCommentTask(t, Api);
+                    RunCommentTaskAsync(t, Api);
                     break;
                 case TaskType.DM:
-                    RunDMTask(t, Api);
+                    RunDMTaskAsync(t, Api);
                     break;
                 case TaskType.Follow:
-                    RunFollowTask(t, Api);
+                    RunFollowTaskAsync(t, Api);
                     break;
                 case TaskType.Like:
-                    RunLikeTask(t, Api);
+                    RunLikeTaskAsync(t, Api);
                     break;
                 case TaskType.Post:
                     RunPostTaskAsync(t, Api);
@@ -90,21 +81,11 @@ namespace InstantScheduler.DAL
                     break;
             }
 
-            using (var context = new InstaContext())
-            {
-                context.Tasks.First(ts => ts.Id == t.Id).Exectued++;
-                context.SaveChanges();
-            }
-
-            //Helper.LogTaskExecute(t);
         }
 
 
-        // Done
         private static async void RunUnlikeTaskAsync(TaskModel t, IInstaApi api)
         {
-            MessageBox.Show("RunUnlikeTask - " + t.Name);
-
             t = t.Refreshed;
 
             List<InstaMedia> medias = new List<InstaMedia>();
@@ -113,79 +94,165 @@ namespace InstantScheduler.DAL
 
             if (_temp.Succeeded)
             {
-                medias.AddRange(_temp.Value); 
+                medias.AddRange(_temp.Value);
+
+                var FilteredMedia = await Helper.GetFilteredMediaAsync(medias, t.Searches, api, 5); 
+                
+                if (FilteredMedia.Count > 0)
+                {
+                    foreach(var media in FilteredMedia)
+                    {
+                        if (media != null)
+                        {
+                            var result = await api.UnLikeMediaAsync(media.InstaIdentifier);
+
+                            if (result.Succeeded)
+                            {
+                                t.TaskExecuted();
+                                Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                            }
+                            else
+                            {
+                                Helper.Log(JsonConvert.SerializeObject(result.Info));
+                            }
+                        }
+                    }
+                    
+                }
+
+
             }
 
-            // execute
-            medias.Sort((m1, m2) => m2.LikesCount - m1.LikesCount);
+            
 
-            medias = medias.Take(1).ToList();
-
-            medias.ForEach(async m =>
-            {
-                var result = await api.UnLikeMediaAsync(m.InstaIdentifier);
-                if (result.Succeeded)
-                {
-                    MessageBox.Show("Media Unliked: " + result.Value);
-                }
-            });
+            
         }
 
+        private static async void RunLikeTaskAsync(TaskModel t, IInstaApi api)
+        {
+            List<InstaMedia> medias = new List<InstaMedia>();
 
-        // Done
+            t = t.Refreshed;
+
+            var _temp = await api.GetUserTimelineFeedAsync(PaginationParameters.MaxPagesToLoad(5));
+
+            if (_temp.Succeeded)
+            {
+                medias.AddRange(_temp.Value.Medias);
+
+                var FilteredMedia = await Helper.GetFilteredMediaAsync(medias, t.Searches, api, 5); 
+
+
+                // Execute
+                if (FilteredMedia.Count > 0)
+                {
+                    foreach(var media in FilteredMedia)
+                    {
+                        if (media != null)
+                        {
+                            var result = await api.LikeMediaAsync(media.InstaIdentifier);
+
+                            if (result.Succeeded)
+                            {
+                                t.TaskExecuted();
+                                Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                            }
+                            else
+                            {
+                                Helper.Log(JsonConvert.SerializeObject(result.Info)); 
+                            }
+                        }
+                    }
+                    
+                }
+            }
+           
+        }
+
+        private static async void RunFollowTaskAsync(TaskModel t, IInstaApi api)
+        {
+            List<InstaUserShort> users = new List<InstaUserShort>();
+
+            t = t.Refreshed;
+
+            foreach(var search in t.Searches)
+            {
+
+                foreach(var inString in search.GetInStrings())
+                {
+                    var _temp = await api.SearchUsersAsync(inString);
+
+                    if (_temp.Succeeded)
+                    {
+                        users.AddRange(_temp.Value.ToList()); 
+                    }
+                }
+
+                var FilteredUsers = await Helper.GetFilteredUsersAsync(users, t.Searches, api, 5);
+
+                // Execute
+                if (FilteredUsers.Count > 0)
+                {
+                    foreach (var user in FilteredUsers)
+                    {
+                        if (user != null)
+                        {
+                            var result = await api.FollowUserAsync(user.Pk);
+
+                            if (result.Succeeded)
+                            {
+                                if (result.Value.Following)
+                                {
+                                    t.TaskExecuted();
+                                    Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                                }
+                                else
+                                    Helper.Log(JsonConvert.SerializeObject(result.Value)); 
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
         private static async void RunUnfollowTaskAsync(TaskModel t, IInstaApi api)
         {
-            MessageBox.Show("RunUnfollowTaskAsync - " + t.Name);
-
             t = t.Refreshed;
 
             List<InstaUserShort> users = new List<InstaUserShort>();
             var _currentUser = await api.GetCurrentUserAsync();
-            InstaCurrentUser currentUser; 
 
             if (_currentUser.Succeeded)
             {
-                currentUser = _currentUser.Value; 
+                var _followers = await api.GetUserFollowersAsync(_currentUser.Value.UserName, PaginationParameters.MaxPagesToLoad(10)); 
 
-                t.Searches.ForEach(s =>
+                if (_followers.Succeeded)
                 {
-                    JsonConvert.DeserializeObject<List<string>>(s.InStrings).ForEach(async inString =>
+                    var filteredUsers = await Helper.GetFilteredUsersAsync(_followers.Value.ToList(), t.Searches, api, 5); 
+
+                    foreach(var user in filteredUsers)
                     {
-                        var temp = await api.GetUserFollowingAsync(currentUser.UserName, PaginationParameters.MaxPagesToLoad(5), inString);
-                        if (temp.Succeeded)
+                        if(user != null)
                         {
-                            users.AddRange(temp.Value);
+                            var result = await api.UnFollowUserAsync(user.Pk);
+                            if (result.Succeeded)
+                                if (!result.Value.Following)
+                                {
+                                    t.TaskExecuted();
+                                    Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                                }
+                                else
+                                    Helper.Log(JsonConvert.SerializeObject(result.Value));
                         }
-                    });
-
-
-                    JsonConvert.DeserializeObject<List<string>>(s.InStrings).ForEach(async exString =>
-                    {
-                        var temp = await api.GetUserFollowingAsync(currentUser.UserName, PaginationParameters.MaxPagesToLoad(5), exString);
-                        if (temp.Succeeded)
-                        {
-                            users.RemoveAll(u => temp.Value.Contains(u));
-                        }
-                    });
-
-
-                    users = users.Take(1).ToList(); 
-
-                    users.ForEach(async u =>
-                    {
-                        var result = await api.UnFollowUserAsync(u.Pk);
-                        Console.WriteLine("User followed: " + u.FullName);
-                    });
-                });
+                    }
+                }   
             }
 
         }
 
-        // DONE
         private static async void RunPostTaskAsync(TaskModel t, IInstaApi api)
         {
-            MessageBox.Show("RunPostTaskAsync");
-
             t = t.Refreshed;
 
             if (t.GetValues().Images.Count > 0)
@@ -193,7 +260,7 @@ namespace InstantScheduler.DAL
                 if(t.GetValues().Images.Count > 1)
                 {
                     var _imgs = new List<InstaImage>();
-                    t.GetValues().Images.ForEach(img =>
+                    foreach(var img in t.GetValues().Images)
                     {
                         _imgs.Add(new InstaImage
                         {
@@ -201,13 +268,18 @@ namespace InstantScheduler.DAL
                             Height = img.StandardResolution.Height,
                             Width = img.StandardResolution.Width
                         });
-                    }); 
+                    }; 
 
-                    var _temp = await api.UploadPhotosAlbumAsync(_imgs.ToArray(), t.GetValues().Text);
+                    var result = await api.UploadPhotosAlbumAsync(_imgs.ToArray(), await Helper.ConstructCaptionTextAsync(t.GetValues().Text, t.Searches, api));
 
-                    if (_temp.Succeeded)
+                    if (result.Succeeded)
                     {
-                        // Success
+                        t.TaskExecuted();
+                        Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                    }
+                    else
+                    {
+                        Helper.Log(JsonConvert.SerializeObject(result.Info)); 
                     }
                 }
                 else
@@ -221,10 +293,15 @@ namespace InstantScheduler.DAL
                         Width = img.StandardResolution.Width
                     };
 
-                    var _temp = await api.UploadPhotoAsync(_img, t.GetValues().Text); 
-                    if (_temp.Succeeded)
+                    var result = await api.UploadPhotoAsync(_img, await Helper.ConstructCaptionTextAsync(t.GetValues().Text, t.Searches, api)); 
+                    if (result.Succeeded)
                     {
-                        // Success
+                        t.TaskExecuted();
+                        Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                    }
+                    else
+                    {
+                        Helper.Log(JsonConvert.SerializeObject(result.Info));
                     }
                 }
             }
@@ -246,242 +323,120 @@ namespace InstantScheduler.DAL
                     Width = 100
                 };
 
-                var _temp = await api.UploadVideoAsync(_vid, _img, t.GetValues().Text);
+                var result = await api.UploadVideoAsync(_vid, _img, await Helper.ConstructCaptionTextAsync(t.GetValues().Text, t.Searches, api));
 
-                if (_temp.Succeeded)
+                if (result.Succeeded)
                 {
-
+                    t.TaskExecuted();
+                    Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                }
+                else
+                {
+                    Helper.Log(JsonConvert.SerializeObject(result.Info));
                 }
             }
         }
 
-        // Done
-        private static void RunLikeTask(TaskModel t, IInstaApi api)
+        private static async void RunDMTaskAsync(TaskModel t, IInstaApi api)
         {
-            MessageBox.Show("RunLikeTask");
-
-            List<InstaMedia> medias = new List<InstaMedia>();
-
-            t = t.Refreshed;
-
-            t.Searches.ForEach(s =>
+            var users = new List<InstaUserShort>(); 
+            
+            // get essential search results 
+            foreach(var search in t.Searches)
             {
-                // Search by Users
-                if (s.InUsers)
+                foreach(var inString in search.GetInStrings())
                 {
-                    var users = new List<InstaUserShort>();
-                    JsonConvert.DeserializeObject<List<string>>(s.InStrings).ForEach(async inString =>
-                    {
-                        var temp = await api.SearchUsersAsync(inString);
-                        if (temp.Succeeded)
-                        {
-                            users.AddRange(temp.Value.ToList());
-                        }
-                    });
-
-                    JsonConvert.DeserializeObject<List<string>>(s.ExStrings).ForEach(async exString =>
-                    {
-                        var temp = await api.SearchUsersAsync(exString);
-                        if (temp.Succeeded)
-                        {
-                            users.RemoveAll(u => temp.Value.Contains(u));
-                        }
-                    });
-
-
-                    users.ForEach(async u =>
-                    {
-                        var temp = await api.GetUserMediaAsync(u.UserName, PaginationParameters.MaxPagesToLoad(1));
-                        if (temp.Succeeded)
-                        {
-                            medias.AddRange(temp.Value.Where(m => !m.HasLiked).Take(5));
-                        }
-                    });
-                }
-
-            });
-            // End of Search by Users
-
-
-
-            // execute
-            medias = medias.Where(m => !m.HasLiked).ToList();
-            medias.Sort((m1, m2) => m1.LikesCount - m2.LikesCount);
-
-            medias = medias.Take(1).ToList();
-
-            medias.ForEach(async m =>
-            {
-                var result = await api.LikeMediaAsync(m.InstaIdentifier);
-                if (result.Succeeded)
-                {
-                    MessageBox.Show("Media Liked: " + result.Value);
-                }
-            });
-        }
-
-        // Done
-        private static void RunFollowTask(TaskModel t, IInstaApi api)
-        {
-            //MessageBox.Show("Running Follow Task - " + t.Name);
-
-            List<InstaUserShort> users = new List<InstaUserShort>();
-
-            t = t.Refreshed; 
-
-            t.Searches.ForEach(s =>
-            {
-                JsonConvert.DeserializeObject<List<string>>(s.InStrings).ForEach(async inString =>
-                {
-                    var temp = await api.SearchUsersAsync(inString);
-                    if (temp.Succeeded)
-                    {
-                        users.AddRange(temp.Value);
-                    }
-                });
-
-
-                JsonConvert.DeserializeObject<List<string>>(s.ExStrings).ForEach(async exString =>
-                {
-                    var temp = await api.SearchUsersAsync(exString);
-                    if (temp.Succeeded)
-                    {
-                        users.RemoveAll(u => temp.Value.Contains(u));
-                    }
-                });
-
-
-                var _users = new List<InstaUserShort>();
-
-                users.ForEach(async u =>
-                {
-                    var isFollowed = await api.GetFriendshipStatusAsync(u.Pk);
-
-                    if (isFollowed.Succeeded)
-                    {
-                        if (!isFollowed.Value.Following)
-                        {
-                            _users.Add(u);
-                        }
-                    }
-                });
-
-                _users = _users.Take(1).ToList();
-
-                _users.ForEach(async u =>
-                {
-                    var result = await api.FollowUserAsync(u.Pk);
-                    MessageBox.Show("User followed: " + u.FullName);
-                });
-            }); 
-        }
-
-        // DONE
-        private static void RunDMTask(TaskModel t, IInstaApi api)
-        {
-            MessageBox.Show("RunDMTask");
-
-            t.Searches.ForEach(s =>
-            {
-                // Search by Users
-                var users = new List<InstaUserShort>();
-                JsonConvert.DeserializeObject<List<string>>(s.InStrings).ForEach(async inString =>
-                {
-                    var temp = await api.SearchUsersAsync(inString);
-                    if (temp.Succeeded)
-                    {
-                        users.AddRange(temp.Value.ToList());
-                    }
-                });
-
-                JsonConvert.DeserializeObject<List<string>>(s.ExStrings).ForEach(async exString =>
-                {
-                    var temp = await api.SearchUsersAsync(exString);
-                    if (temp.Succeeded)
-                    {
-                        users.RemoveAll(u => temp.Value.Contains(u));
-                    }
-                });
-
-                users = users.Take(1).ToList();
-
-                users.ForEach(async u =>
-                {
-                    var _temp = await api.SendDirectMessage(u.UserName, "", t.GetValues().Text);
-
+                    var _temp = await api.SearchUsersAsync(inString);
                     if (_temp.Succeeded)
                     {
-
+                        users.AddRange(_temp.Value.ToList());
                     }
-                });
-                
+                }
+            }
 
-            });
-            // End of Search by Users
+            var filteredUsers = await Helper.GetFilteredUsersAsync(users, t.Searches, api, 5);
 
+            // Executing
+            if (filteredUsers.Count > 0)
+            {
+                foreach (var user in filteredUsers)
+                {
+                    if (!user.IsPrivate)
+                    {
+                        var result = await api.SendDirectMessage(user.UserName, "", await Helper.ConstructCaptionTextAsync(t.GetValues().Text, t.Searches, api));
+                        if (result.Succeeded)
+                        {
+                            t.TaskExecuted();
+                            Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                        }
+                        else
+                        {
+                            Helper.Log(JsonConvert.SerializeObject(result.Info));
+                        }
+                    }
+                }
+
+            }
         }
 
-        // DONE
-        private static void RunCommentTask(TaskModel t, IInstaApi api)
+        private static async void RunCommentTaskAsync(TaskModel t, IInstaApi api)
         {
-            MessageBox.Show("RunCommentTask");
-
-
             List<InstaMedia> medias = new List<InstaMedia>();
 
-            t.Searches.ForEach(s =>
+            foreach(var search in t.Searches)
             {
-                // Search by Users
-                if (s.InUsers)
+                if (search.InUsers)
                 {
-                    var users = new List<InstaUserShort>();
-                    JsonConvert.DeserializeObject<List<string>>(s.InStrings).ForEach(async inString =>
-                    {
-                        var temp = await api.SearchUsersAsync(inString);
-                        if (temp.Succeeded)
-                        {
-                            users.AddRange(temp.Value.ToList());
-                        }
-                    });
+                    var _tempList = new List<InstaUserShort>(); 
 
-                    JsonConvert.DeserializeObject<List<string>>(s.ExStrings).ForEach(async exString =>
+                    foreach(var inString in search.GetInStrings())
                     {
-                        var temp = await api.SearchUsersAsync(exString);
-                        if (temp.Succeeded)
+                        var _temp = await api.SearchUsersAsync(inString);
+                        if (_temp.Succeeded)
                         {
-                            users.RemoveAll(u => temp.Value.Contains(u));
+                            _tempList.AddRange(_temp.Value); 
                         }
-                    });
+                    }
 
+                    _tempList = await Helper.GetFilteredUsersAsync(_tempList, t.Searches, api, 10);
 
-                    users.ForEach(async u =>
+                    foreach(var user in _tempList)
                     {
-                        var temp = await api.GetUserMediaAsync(u.UserName, PaginationParameters.MaxPagesToLoad(1));
-                        if (temp.Succeeded)
+                        var _userMedia = await api.GetUserMediaAsync(user.UserName, PaginationParameters.MaxPagesToLoad(5)); 
+                        if (_userMedia.Succeeded)
                         {
-                            medias.AddRange(temp.Value.Where(m => !m.HasLiked).Take(5));
+                            medias.AddRange(_userMedia.Value); 
                         }
-                    });
+                    }
                 }
 
-            });
-            // End of Search by Users
-
-
-
-            // execute
-            medias.Sort((m1, m2) => m1.PreviewComments.Count - m2.PreviewComments.Count);
-
-            medias = medias.Take(1).ToList();
-
-            medias.ForEach(async m =>
-            {
-                var result = await api.CommentMediaAsync(m.InstaIdentifier, t.GetValues().Text);
-                if (result.Succeeded)
+                if (search.InPosts)
                 {
-                    MessageBox.Show("Media Commented on: " + result.Value);
+                    var _temp = await api.GetUserTimelineFeedAsync(PaginationParameters.MaxPagesToLoad(5));
+                    if (_temp.Succeeded)
+                    {
+                        medias.AddRange(_temp.Value.Medias.ToList()); 
+                    }
                 }
-            });
+
+                var filteredMedia = await Helper.GetFilteredMediaAsync(medias, t.Searches, api, 5); 
+
+                foreach(var media in filteredMedia)
+                {
+                    var result = await api.CommentMediaAsync(media.InstaIdentifier, await Helper.ConstructCaptionTextAsync(t.GetValues().Text, t.Searches, api));
+                    if (result.Succeeded)
+                    {
+                        t.TaskExecuted();
+                        Helper.Log($"Task Executed: {t.Name} - {t.TaskType.ToString()} {Environment.NewLine} {JsonConvert.SerializeObject(result.Value)}");
+                    }
+                    else
+                    {
+                        Helper.Log(JsonConvert.SerializeObject(result.Info)); 
+                    }
+                    
+                }
+            }
+           
         }
     }
 }

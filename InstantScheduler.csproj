@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\InboxThreadView.xaml.cs">
+      <DependentUpon>InboxThreadView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\TaskWorker.cs" />
     <Compile Include="Meta\Helper.cs" />
     <Compile Include="Windows\MessagesWindow.xaml.cs">
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\FeedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\InboxThreadView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

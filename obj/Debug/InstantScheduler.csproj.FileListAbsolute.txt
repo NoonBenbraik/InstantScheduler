@@ -57,3 +57,5 @@ C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantSche
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\ViewWindows.g.cs
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\ViewWindows.baml
 C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Windows\MessagesWindow.baml
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\InboxThreadView.g.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Debug\Controls\InboxThreadView.baml

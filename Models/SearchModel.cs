@@ -41,5 +41,26 @@ namespace InstantScheduler.Models
         {
             this.ExLocations = JsonConvert.SerializeObject(locations);
         }
+
+        public List<string> GetInStrings()
+        {
+            return JsonConvert.DeserializeObject<List<string>>(this.InStrings); 
+        }
+
+        public List<string> GetExStrings()
+        {
+            return JsonConvert.DeserializeObject<List<string>>(this.ExStrings);
+        }
+
+        public void SetInStrings(List<string> strings)
+        {
+            this.InStrings = JsonConvert.SerializeObject(strings);
+        }
+
+        public void SetExStrings(List<string> strings)
+        {
+            this.ExStrings = JsonConvert.SerializeObject(strings);
+        }
+
     }
 }

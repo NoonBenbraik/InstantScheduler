@@ -73,5 +73,15 @@ namespace InstantScheduler.Models
             }
         }
 
+        public async void TaskExecuted()
+        {
+            using (var context = new InstaContext())
+            {
+                this.Exectued = context.Tasks.First(t => t.Id == this.Id).Exectued + 1;
+                await context.SaveChangesAsync(); 
+            }
+
+        }
+
     }
 }

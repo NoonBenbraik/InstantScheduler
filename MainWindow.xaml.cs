@@ -85,7 +85,9 @@ namespace InstantScheduler
             }
             else
             {
-                MessageBox.Show(loginReq.Info.Message); 
+                var result = MessageBox.Show(loginReq.Info.Message, "Not able to Login..", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Yes)
+                    await Login(); 
             }
         }
 
