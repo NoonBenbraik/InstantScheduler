@@ -27,7 +27,9 @@ namespace InstantScheduler.Controls
         UserModel User;
         List<SearchModel> SelectedSearches;
         List<SearchModel> SavedSearches;
-        ValuesModel Values; 
+        ValuesModel Values;
+
+        int remainingTasks = 100; 
 
         public TasksView(UserModel user)
         {
@@ -52,7 +54,14 @@ namespace InstantScheduler.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Reset(); 
+            try
+            {
+                Reset();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); 
+            }
         }
 
         private void txtRepeatCount_TextChanged(object sender, TextChangedEventArgs e)
@@ -67,8 +76,12 @@ namespace InstantScheduler.Controls
                         text += c;
                 });
 
-                ((TextBox)sender).Text = text;
+                if (int.Parse(text) > remainingTasks)
+                    ((TextBox)sender).Text = remainingTasks.ToString();
+                else
+                    ((TextBox)sender).Text = text;
             }
+
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
@@ -120,9 +133,49 @@ namespace InstantScheduler.Controls
             using (var context = new InstaContext())
             {
                 this.User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == this.User.Id);
-                pnlTasks.Children.Clear();
-                this.User.Tasks.Where(t => !t.Active).ToList().ForEach(t => pnlTasks.Children.Insert(0, new TaskItemView(t)));
-                this.User.Tasks.Where(t => t.Active).ToList().ForEach(t => pnlTasks.Children.Insert(0, new TaskItemView(t)));
+
+                pnlRunningTasks.Children.Clear();
+                pnlAllTasks.Children.Clear();
+
+
+                if (this.User.Tasks.Count() > 0)
+                {
+                    lblNoTasks.Visibility = Visibility.Collapsed; 
+
+                    if (this.User.Tasks.Where(t => !t.Active).Count() > 0)
+                    {
+                        lblAllTasks.Visibility = Visibility.Visible;
+                        pnlAllTasks.Visibility = Visibility.Visible;
+                        this.User.Tasks.Where(t => !t.Active).ToList().ForEach(t => pnlAllTasks.Children.Insert(0, new TaskItemView(t)));
+                    }
+                    else
+                    {
+                        lblAllTasks.Visibility = Visibility.Collapsed;
+                        pnlAllTasks.Visibility = Visibility.Collapsed;
+                    }
+
+                    if (this.User.Tasks.Where(t => !t.Active).Count() > 0)
+                    {
+                        lblRunningTasks.Visibility = Visibility.Visible;
+                        pnlRunningTasks.Visibility = Visibility.Visible;
+                        this.User.Tasks.Where(t => !t.Active).ToList().ForEach(t => pnlAllTasks.Children.Insert(0, new TaskItemView(t)));
+                    }
+                    else
+                    {
+                        lblRunningTasks.Visibility = Visibility.Collapsed;
+                        pnlRunningTasks.Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    lblNoTasks.Visibility = Visibility.Visible;
+
+                    lblAllTasks.Visibility = Visibility.Collapsed;
+                    pnlAllTasks.Visibility = Visibility.Collapsed;
+
+                    lblRunningTasks.Visibility = Visibility.Collapsed;
+                    pnlRunningTasks.Visibility = Visibility.Collapsed; 
+                }
             }
 
             txtName.Text = "";
@@ -137,6 +190,8 @@ namespace InstantScheduler.Controls
                 comboSchedule.DisplayMemberPath = "Name";
                 comboSchedule.SelectedValuePath = "Id"; 
                 comboSchedule.SelectedIndex = 0;
+                //remainingTasks = this.User.Schedules[comboSchedule.SelectedIndex].RemainingTasksCount; 
+                //txtRepeatCount.Text = remainingTasks.ToString(); 
             }
 
             SelectedSearches = new List<SearchModel>();
@@ -155,6 +210,18 @@ namespace InstantScheduler.Controls
             lstSavedSearches.SelectedValuePath = "Id";
 
             txtRepeatCount.Text = "10"; 
+        }
+
+        private void ValidateData(UserModel user)
+        {
+            //if( user.Schedules.Count() > 0 && SelectedSearches.Count() > 0)
+            //{
+            //    btnCreate.IsEnabled = true;
+            //}
+            //else
+            //{
+            //    btnCreate.IsEnabled = false;
+            //}
         }
 
         private void TxtSeachSearches_TextChanged(object sender, TextChangedEventArgs e)
@@ -228,6 +295,16 @@ namespace InstantScheduler.Controls
                     btnInputValues.IsEnabled = false;
                     break;
             }
+        }
+
+        private void ComboSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //remainingTasks = this.User.Schedules[comboSchedule.SelectedIndex].RemainingTasksCount;
+            //txtRepeatCount.Text = remainingTasks.ToString(); 
+        }
+
+        private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
         }
     }
 }

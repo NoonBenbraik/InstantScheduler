@@ -1,11 +1,20 @@
 ﻿
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\App.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\FeedView.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\PostView.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\ProfileView.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\SchedulesView.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\SearchesView.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\TasksView.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\HomeWindow.xaml;;
-FC:\Users\NOON\Documents\Visual Studio 2017\Projects\InstantScheduler\InstantScheduler\MainWindow.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\App.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\CommentView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\FeedView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\InboxThreadView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\PostView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\ProfileView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\ScheduleItemView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\SchedulesView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\SearchesView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\SearchItemView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\TaskItemView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Controls\TasksView.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\HomeWindow.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Windows\InputValuesWindow.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Windows\LocationSearchWindow.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\MainWindow.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Windows\MessagesWindow.xaml;;
+FC:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\Windows\ViewWindows.xaml;;
 

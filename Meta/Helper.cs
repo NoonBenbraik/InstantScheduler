@@ -23,9 +23,20 @@ namespace InstantScheduler.Meta
                 Directory.CreateDirectory(directory);
 
             if (!File.Exists(directory + fileName))
-                File.Create(directory + fileName);
+                File.Create(directory + fileName).Close();
 
-            File.AppendAllText(directory + fileName, $"{DateTime.Now}:  {text}"); 
+
+            try
+            {
+                File.OpenWrite(directory + fileName); 
+                File.AppendAllText(directory + fileName, $"{DateTime.Now}:  {text}");
+            }
+            catch
+            {
+                return;
+            }
+
+
         }
 
         public static string PropsToString(object o)
@@ -90,6 +101,7 @@ namespace InstantScheduler.Meta
                 {
                     var _tempList = new List<InstaMedia>();
 
+
                     search.GetInStrings().ForEach(inString =>
                     {
                         if (inString.StartsWith("#"))
@@ -139,6 +151,7 @@ namespace InstantScheduler.Meta
 
                 if (search.InPosts)
                 {
+                    
                     // It a Must in Posts
                 }
             };

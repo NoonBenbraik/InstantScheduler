@@ -1,0 +1,20 @@
+﻿InstantScheduler
+
+
+winexe
+C#
+.cs
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\obj\Release\
+InstantScheduler
+none
+false
+TRACE
+C:\Users\NOON\documents\visual studio 2017\Projects\InstantScheduler\InstantScheduler\App.xaml
+17-1554176968
+147472503
+341135274064
+741309701173
+Controls\CommentView.xaml;Controls\FeedView.xaml;Controls\InboxThreadView.xaml;Controls\PostView.xaml;Controls\ProfileView.xaml;Controls\ScheduleItemView.xaml;Controls\SchedulesView.xaml;Controls\SearchesView.xaml;Controls\SearchItemView.xaml;Controls\TaskItemView.xaml;Controls\TasksView.xaml;HomeWindow.xaml;Windows\InputValuesWindow.xaml;Windows\LocationSearchWindow.xaml;MainWindow.xaml;Windows\MessagesWindow.xaml;Windows\ViewWindows.xaml;
+
+False
+

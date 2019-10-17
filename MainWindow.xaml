@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:InstantScheduler"
         mc:Ignorable="d"
         Icon="./src/img/MainIcon.png"
-        Title="Instant Scheduler - Welcome" MinHeight="600" Height="600" Width="800" MinWidth="800">
+        Title="Instant Scheduler - Welcome" MinHeight="600" Height="600" Width="800" MinWidth="800"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>

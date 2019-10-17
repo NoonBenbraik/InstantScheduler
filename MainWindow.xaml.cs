@@ -1,9 +1,11 @@
-﻿using InstaSharper.API;
+﻿using InstantScheduler.DAL;
+using InstaSharper.API;
 using InstaSharper.API.Builder;
 using InstaSharper.Classes;
 using InstaSharper.Logger;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,17 +27,17 @@ namespace InstantScheduler
     public partial class MainWindow : Window
     {
         private UserSessionData user;
-        private IInstaApi api; 
+        private IInstaApi api;
 
         public MainWindow()
         {
             InitializeComponent();
             user = new UserSessionData();
-
             #region hidden
             txtUsername.Text = "NoonEasy";
             txtPassword.Password = "noon.24016750";
             #endregion
+            AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -85,7 +87,7 @@ namespace InstantScheduler
             }
             else
             {
-                var result = MessageBox.Show(loginReq.Info.Message, "Not able to Login..", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                var result = MessageBox.Show($"Login Falied. {Environment.NewLine}Try again?", "Login Failed", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes);
                 if (result == MessageBoxResult.Yes)
                     await Login(); 
             }
@@ -106,6 +108,31 @@ namespace InstantScheduler
         {
             if (CheckFields()) btnLogin.IsEnabled = true;
             else btnLogin.IsEnabled = false; 
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnLogin.IsEnabled = false;
+            progressBar.Visibility = Visibility.Visible; 
+
+            await Task.Run(() =>
+            {
+                try
+                {
+                    using (var context = new InstaContext())
+                    {
+                        context.Database.CreateIfNotExists();
+                        context.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            btnLogin.IsEnabled = true;
+            progressBar.Visibility = Visibility.Collapsed; 
         }
     }
 }

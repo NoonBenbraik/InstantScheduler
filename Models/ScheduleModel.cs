@@ -26,12 +26,12 @@ namespace InstantScheduler.Models
 
         public List<DayOfWeek> GetDays()
         {
-            return JsonConvert.DeserializeObject<List<DayOfWeek>>(Days); 
+            return JsonConvert.DeserializeObject<List<DayOfWeek>>(Days);
         }
 
         public void SetDays(List<DayOfWeek> days)
         {
-            this.Days = JsonConvert.SerializeObject(days); 
+            this.Days = JsonConvert.SerializeObject(days);
         }
 
         [NotMapped]
@@ -42,8 +42,29 @@ namespace InstantScheduler.Models
                 return GetDays().Contains(DateTime.Now.DayOfWeek)
                     && DateTime.Compare(DateTime.Now, this.StartDate) >= 0 && DateTime.Compare(DateTime.Now, this.EndDate) <= 0
                     && TimeModel.Compare(TimeModel.Now, this.StartTime) >= 0 && TimeModel.Compare(TimeModel.Now, this.EndTime) <= 0;
-                    //&& this.Tasks.Sum(t => t.Exectued) < this.TaskLimit; 
+                //&& this.Tasks.Sum(t => t.Exectued) < this.TaskLimit; 
             }
+        }
+
+        [NotMapped]
+        public int RemainingTasksCount
+        {
+            get
+            {
+                return this.TaskLimit - this.TaskRepeatCount + this.TaskExecutedCount; 
+            }
+        }
+
+        [NotMapped]
+        public int TaskExecutedCount
+        {
+            get { return this.Tasks.Sum(t => t.Exectued); }
+        }
+
+        [NotMapped]
+        public int TaskRepeatCount
+        {
+            get { return this.Tasks.Sum(t => t.Repeat); }
         }
     }
 }

@@ -22,7 +22,6 @@ namespace InstantScheduler.Models
         public int Repeat { get; set; }
         public int Exectued { get; set; }
 
-        
         [NotMapped]
         public bool Active
         {
@@ -77,7 +76,7 @@ namespace InstantScheduler.Models
         {
             using (var context = new InstaContext())
             {
-                this.Exectued = context.Tasks.First(t => t.Id == this.Id).Exectued + 1;
+                context.Tasks.First(t => t.Id == this.Id).Exectued++;
                 await context.SaveChangesAsync(); 
             }
 

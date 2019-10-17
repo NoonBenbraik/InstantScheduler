@@ -19,37 +19,49 @@ namespace InstantScheduler.DAL
             MessageBox.Show("StartBackgroundWorker", "MileStone", MessageBoxButton.OK, MessageBoxImage.Information);
 
             UserModel User;
-            using (var context = new InstaContext())
-            {
-                User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == UserId);
-            }
+            
 
             List<TaskModel> tasks = new List<TaskModel>();
 
             System.Timers.Timer timer_1 = new System.Timers.Timer();
             timer_1.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                User.Schedules.Where(sc => sc.Active).ToList().ForEach(sc =>
+                using (var context = new InstaContext())
                 {
-                    tasks.AddRange(sc.Tasks.Where(t => t.Active && !tasks.Contains(t)));
-                    tasks.RemoveAll(t => !t.Active); 
-                });
+                    User = context.Users.Include("Schedules").Include("Tasks").Include("Searches").FirstOrDefault(u => u.Id == UserId);
+                }
+
+                foreach (var sc in User.Schedules.Where(sc => sc.Active).ToList())
+                {
+                    foreach(var t in sc.Tasks)
+                    {
+                        if (!tasks.Any(task => task.Id == t.Id && t.Active))
+                            tasks.Add(t); 
+                    }
+
+                    tasks.RemoveAll(t => !t.Active);
+
+                    foreach (var t in tasks)
+                    {
+                        RunTask(t, Api);
+                    }
+                }
             };
             timer_1.Interval = 20000;
             timer_1.Enabled = true;
 
-            System.Timers.Timer timer_2 = new System.Timers.Timer();
-            timer_2.Elapsed += (object sender, ElapsedEventArgs e) =>
-            {
-                tasks.ForEach(t =>
-                {
-                    if (t.Active)
-                        RunTask(t, Api);
-                });
-            };
+            //System.Timers.Timer timer_2 = new System.Timers.Timer();
+            //timer_2.Elapsed += (object sender, ElapsedEventArgs e) =>
+            //{
+            //    foreach(var t in tasks)
+            //    {
+            //        if (t.Active)
+            //            RunTask(t, Api);
+            //    }
+            //};
 
-            timer_2.Interval = 10000;
-            timer_2.Enabled = true;
+            //timer_2.Interval = 10000;
+            //timer_2.Enabled = true;
         }
 
         private static void RunTask(TaskModel t, IInstaApi Api)
@@ -134,10 +146,12 @@ namespace InstantScheduler.DAL
 
             t = t.Refreshed;
 
-            var _temp = await api.GetUserTimelineFeedAsync(PaginationParameters.MaxPagesToLoad(5));
+            var _temp = await api.GetExploreFeedAsync(PaginationParameters.MaxPagesToLoad(15));
 
             if (_temp.Succeeded)
             {
+                _temp.Value.Medias.RemoveAll(m => !m.HasLiked);
+                
                 medias.AddRange(_temp.Value.Medias);
 
                 var FilteredMedia = await Helper.GetFilteredMediaAsync(medias, t.Searches, api, 5); 
@@ -183,8 +197,26 @@ namespace InstantScheduler.DAL
                     var _temp = await api.SearchUsersAsync(inString);
 
                     if (_temp.Succeeded)
-                    {
-                        users.AddRange(_temp.Value.ToList()); 
+                    {   
+                        users.AddRange(_temp.Value.ToList());
+
+
+                        var _tempList = new List<InstaUserShort>();
+
+                        foreach (var user in users)
+                        {
+
+                            var _fs = await api.GetFriendshipStatusAsync(user.Pk);
+                            if (_fs.Succeeded)
+                            {
+                                if (!_fs.Value.Following)
+                                {
+                                    _tempList.Add(user); 
+                                }
+                            }
+                        }
+
+                        users = _tempList; 
                     }
                 }
 

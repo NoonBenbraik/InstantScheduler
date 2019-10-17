@@ -1,6 +1,7 @@
 ﻿using InstantScheduler.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace InstantScheduler.DAL
     {
         public InstaContext() : base("name=DefaultConnection")
         {
-
            Database.SetInitializer<InstaContext>(new DropCreateDatabaseIfModelChanges<InstaContext>()); 
 
         }
