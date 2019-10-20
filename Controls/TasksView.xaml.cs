@@ -154,11 +154,11 @@ namespace InstantScheduler.Controls
                         pnlAllTasks.Visibility = Visibility.Collapsed;
                     }
 
-                    if (this.User.Tasks.Where(t => !t.Active).Count() > 0)
+                    if (this.User.Tasks.Where(t => t.Active).Count() > 0)
                     {
                         lblRunningTasks.Visibility = Visibility.Visible;
                         pnlRunningTasks.Visibility = Visibility.Visible;
-                        this.User.Tasks.Where(t => !t.Active).ToList().ForEach(t => pnlAllTasks.Children.Insert(0, new TaskItemView(t)));
+                        this.User.Tasks.Where(t => t.Active).ToList().ForEach(t => pnlRunningTasks.Children.Insert(0, new TaskItemView(t)));
                     }
                     else
                     {

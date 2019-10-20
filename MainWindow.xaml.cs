@@ -33,10 +33,10 @@ namespace InstantScheduler
         {
             InitializeComponent();
             user = new UserSessionData();
-            #region hidden
-            txtUsername.Text = "NoonEasy";
-            txtPassword.Password = "noon.24016750";
-            #endregion
+            //#region hidden
+            //txtUsername.Text = "NoonEasy";
+            //txtPassword.Password = "noon.24016750";
+            //#endregion
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
         }
 

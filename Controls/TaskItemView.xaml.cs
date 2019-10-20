@@ -53,7 +53,7 @@ namespace InstantScheduler.Controls
                 using (var context = new InstaContext())
                 {
                     context.Tasks.FirstOrDefault(t => t.Id == this.Item.Id).Exectued = this.Item.Repeat + 1;
-                    context.SaveChangesAsync(); 
+                    context.SaveChanges(); 
                 }
             }
 

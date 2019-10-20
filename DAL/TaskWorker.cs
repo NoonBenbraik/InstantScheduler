@@ -16,7 +16,7 @@ namespace InstantScheduler.DAL
     {
         public static void StartBackgroundWorker(int UserId, IInstaApi Api)
         {
-            MessageBox.Show("StartBackgroundWorker", "MileStone", MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show("StartBackgroundWorker", "MileStone", MessageBoxButton.OK, MessageBoxImage.Information);
 
             UserModel User;
             
@@ -66,7 +66,7 @@ namespace InstantScheduler.DAL
 
         private static void RunTask(TaskModel t, IInstaApi Api)
         {
-            MessageBox.Show($"Task Type: {t.TaskType.ToString()} {Environment.NewLine}Task Name: {t.Name}", "Task Running", MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show($"Task Type: {t.TaskType.ToString()} {Environment.NewLine}Task Name: {t.Name}", "Task Running", MessageBoxButton.OK, MessageBoxImage.Information);
 
             switch (t.TaskType)
             {
